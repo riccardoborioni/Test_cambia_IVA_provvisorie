@@ -1,0 +1,57 @@
+{
+  "animateLoading": true,
+  "borderRadius": "1.5rem",
+  "bottomRow": 7,
+  "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "database",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "as0gm78ur6",
+  "leftColumn": 43,
+  "minWidth": 120,
+  "mobileBottomRow": 46,
+  "mobileLeftColumn": 9,
+  "mobileRightColumn": 25,
+  "mobileTopRow": 42,
+  "needsErrorInfo": false,
+  "onClick": "// 1. Pulisco errori vecchi\nstoreValue('errore_sp', '');\n\n// 2. Verifica Utente\nCheck_Stato_Utente.run(\n    () => {\n        const rigaUtente = Check_Stato_Utente.data[0];\n\n        // ============================================================\n        // NUOVE LOGICHE (Guardia)\n        // ============================================================\n\n        // CASO 1: L'utente non esiste proprio nel DB\n        if (rigaUtente && rigaUtente.Stato === 'UTENTE H2O ERRATO') {\n            storeValue('errore_sp', 'Utente H2O Errato: User inserito non valido.');\n            showAlert('❌ Attenzione: Utente H2O non trovato!', 'error');\n            return; // STOP\n        }\n\n        // CASO 2: AMMINISTRATORE (GIALLO)\n        if (rigaUtente && rigaUtente.Stato && rigaUtente.Stato.includes('AMMINISTRATORE')) {\n            storeValue('errore_sp', rigaUtente.Stato);\n            showAlert(rigaUtente.Stato, 'warning'); \n            return; // STOP\n        }\n\n        // CASO 2-BIS: ACCESSO NEGATO GRUPPO (ROSSO) - [NUOVO!]\n        // Questo intercetta la frase \"Errore = Accesso negato\" che abbiamo messo nella query\n        if (rigaUtente && rigaUtente.Stato && rigaUtente.Stato.includes('Errore = Accesso negato')) {\n            storeValue('errore_sp', rigaUtente.Stato);\n            showAlert(rigaUtente.Stato, 'error'); // Rosso\n            return; // STOP\n        }\n\n        // CASO 3: L'utente esiste ma è sloggato\n        if (rigaUtente && rigaUtente.Stato === 'DISCONNESSO') {\n            storeValue('errore_sp', 'Utente non connesso.');\n            showAlert('⛔ Errore: Utente non connesso.', 'error');\n            return; // STOP\n        }\n\n        // ============================================================\n        // LOGICA OPERATIVA (TUA ORIGINALE - NON TOCCATA)\n        // ============================================================\n\n        if (rigaUtente && rigaUtente.Stato === 'CONNESSO') {\n            \n            // 3. Eseguo la SP (Update_fattura)\n            Update_fattura.run(\n                () => {\n                    // === ORA LEGGIAMO COSA HA RISPOSTO LA SP ===\n                    const rispostaSP = Update_fattura.data && Update_fattura.data[0];\n                    \n                    if (rispostaSP && rispostaSP.Esito === 'ERRORE') {\n                        // CASO A: Errore logico (es. causale sbagliata)\n                        storeValue('errore_sp', rispostaSP.Messaggio);\n                        showAlert('❌ ' + rispostaSP.Messaggio, 'error');\n                        \n                    } else {\n                        // CASO B: Tutto OK\n                        showAlert('✅ Fattura aggiornata! Procedo...', 'success');\n\n                        // 4. Registra Tracciamento\n                        Registra_Modifica_Utente.run(\n                            () => {\n                                // 5. Invio Email\n                                Invia_Email_Notifica.run(\n                                    () => { showAlert('✅ Tutto completato!', 'success'); },\n                                    (err) => { showAlert('⚠️ Fatto, ma no email.', 'warning'); }\n                                );\n                            },\n                            (err) => { showAlert('⚠️ Fatto, ma no tracciamento.', 'warning'); }\n                        );\n                    }\n                },\n                (err) => {\n                    // CASO C: Errore tecnico SQL\n                    const msg = 'Errore SQL Critico: ' + (err.message || JSON.stringify(err));\n                    storeValue('errore_sp', msg);\n                    showAlert('❌ Errore critico SQL.', 'error');\n                }\n            );\n\n        } else {\n            // Caso residuo: se lo stato non è nessuno dei precedenti\n            const msgErrore = (rigaUtente && rigaUtente.Stato) ? rigaUtente.Stato : 'Stato utente sconosciuto';\n            storeValue('errore_sp', msgErrore);\n            showAlert('⛔ ' + msgErrore, 'error');\n        }\n    },\n    (err) => {\n        storeValue('errore_sp', 'Errore tecnico verifica utente.');\n        showAlert('❌ Errore tecnico verifica.', 'error');\n    }\n);",
+  "originalBottomRow": 12,
+  "originalTopRow": 8,
+  "parentColumnSpace": 3.65625,
+  "parentId": "kumr2jxi95",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "Procedi - Invio",
+  "tooltip": "",
+  "topRow": 3,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "h7wn0nfue8",
+  "widgetName": "Button1"
+}

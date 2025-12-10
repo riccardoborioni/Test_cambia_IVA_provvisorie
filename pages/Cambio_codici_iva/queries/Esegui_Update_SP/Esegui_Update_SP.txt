@@ -1,0 +1,6 @@
+EXEC [dbo].[sp_AggiornaFatturaSicura]
+    @ID_Fattura     = {{ Table_Testata.selectedRow.ININVOICEID }},
+    @Anno_Fattura   = {{ Table_Testata.selectedRow.INTAXYEAR }},
+    @Numero_Fattura = {{ Table_Testata.selectedRow.ININVOICENUMBER }},
+    @Vecchio_Valore = {{ Table_Righe.selectedRow.INVATCODE }},
+    @Nuovo_Valore   = {{ Input_Nuovo_Codice.text }};

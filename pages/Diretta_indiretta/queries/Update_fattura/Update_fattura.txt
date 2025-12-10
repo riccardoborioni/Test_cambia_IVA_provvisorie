@@ -1,0 +1,4 @@
+EXEC sp_Update_Invoice_Purpose_With_Mail 
+    @P_TaxYear = {{ Input_Anno.text }}, 
+    @P_InvoiceNumber = {{ Input_Numero.text }}, 
+    @P_PurposeType = {{ Select_Tipo.selectedOptionValue }};

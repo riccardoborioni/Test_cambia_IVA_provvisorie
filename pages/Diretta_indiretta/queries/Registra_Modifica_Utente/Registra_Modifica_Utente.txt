@@ -1,0 +1,9 @@
+UPDATE ba_invoice_m
+SET 
+    UTCV = {{ Check_Stato_Utente.data[0].code }},
+    UTDV = GETDATE()
+WHERE 
+    ININVOICENUMBER = {{ Input_Numero.text }} 
+    AND INTAXYEAR = {{ Input_Anno.text }}
+    -- AGGIUNTO QUESTO FILTRO FONDAMENTALE:
+    AND (ININVOICESET IS NULL OR LTRIM(RTRIM(ININVOICESET)) = '');

@@ -1,0 +1,53 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#fef9c3",
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 98,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "bk36cyy9kq",
+  "leftColumn": 0,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 77,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 5,
+  "mobileTopRow": 73,
+  "needsErrorInfo": false,
+  "originalBottomRow": 98,
+  "originalTopRow": 91,
+  "overflow": "NONE",
+  "parentColumnSpace": 14.234375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 60,
+  "shouldTruncate": false,
+  "text": "<span style=\"font-size:13px; color:#b65c00;\">\n  &#9888; Al momento dell'invio, il sistema manda automaticamente un'email all'utente H2O e alla contabilità generale\n</span>\n",
+  "textAlign": "LEFT",
+  "textColor": "#231F20",
+  "topRow": 91,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "k78wjbxnx5",
+  "widgetName": "Text3"
+}

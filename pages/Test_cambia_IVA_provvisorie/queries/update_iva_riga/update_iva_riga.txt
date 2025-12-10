@@ -1,0 +1,12 @@
+UPDATE ba_invoice
+SET 
+    -- IMPORTANTE: Verifica che nella tabella ba_invoice la colonna dell'IVA 
+    -- si chiami davvero IVCODIVA o INVATCODE. Qui ho messo IVCODIVA.
+    INVATCODE = {{this.params.nuovo_codice}}
+
+WHERE 
+    -- Identificatore univoco della fattura
+    ININVOICEID = {{this.params.id_fattura}}
+    
+    -- Identificatore univoco della riga (come richiesto)
+    AND CPROWORD = {{this.params.num_riga}}

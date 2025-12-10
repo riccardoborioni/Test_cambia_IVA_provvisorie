@@ -1,0 +1,7 @@
+SELECT TOP 1 
+    ININVOICEID, 
+    INTAXYEAR, 
+    ININVOICENUMBER, 
+    ININVOICEDATE 
+FROM ba_invoice_m 
+WHERE ININVOICEID = {{ Input_Search_ID.text }}

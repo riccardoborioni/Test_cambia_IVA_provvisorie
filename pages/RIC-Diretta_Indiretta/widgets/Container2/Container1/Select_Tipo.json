@@ -1,0 +1,58 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "1.5rem",
+  "bottomRow": 7,
+  "boxShadow": "none",
+  "defaultOptionValue": "GREEN",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "zat9eufdw1",
+  "labelAlignment": "left",
+  "labelPosition": "Auto",
+  "labelStyle": "BOLD,ITALIC",
+  "labelText": "Tipo",
+  "labelTextColor": "#b91c1c",
+  "labelTextSize": "1rem",
+  "labelWidth": 5,
+  "leftColumn": 36,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 84,
+  "mobileLeftColumn": 24,
+  "mobileRightColumn": 44,
+  "mobileTopRow": 77,
+  "needsErrorInfo": false,
+  "optionLabel": "value",
+  "optionValue": "label",
+  "parentColumnSpace": 10.008544921875,
+  "parentId": "4yrdb7m0ja",
+  "parentRowSpace": 10,
+  "placeholderText": "Select option",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 64,
+  "serverSideFiltering": false,
+  "sourceData": "[\n  { \"label\": \"Diretto\", \"value\": \"diretto\" },\n  { \"label\": \"Indiretto\", \"value\": \"indiretto\" }\n]",
+  "topRow": 0,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "hy3nzf4h54",
+  "widgetName": "Select_Tipo"
+}

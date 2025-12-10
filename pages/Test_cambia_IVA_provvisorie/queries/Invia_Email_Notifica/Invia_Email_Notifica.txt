@@ -1,0 +1,42 @@
+DECLARE @MailDestinatario NVARCHAR(255);
+DECLARE @MailSubject NVARCHAR(255);
+DECLARE @MailBody NVARCHAR(MAX);
+DECLARE @NomeUtente NVARCHAR(100);
+DECLARE @NumeroFattura NVARCHAR(50);
+DECLARE @CodiceUtente NVARCHAR(50);
+DECLARE @TipoEtichetta NVARCHAR(255);
+
+-- ⚠️ FIX: Convertiamo TUTTI i parametri in ingresso in TESTO (NVARCHAR) subito
+-- Questo impedisce l'errore "varbinary"
+SET @NumeroFattura = CAST({{ this.params.numero }} AS NVARCHAR(50));
+SET @CodiceUtente  = CAST({{ this.params.utente_code }} AS NVARCHAR(50));
+SET @TipoEtichetta = CAST({{ this.params.tipoLabel }} AS NVARCHAR(255));
+
+-- 1. Recupera email e nome (con conversione di sicurezza)
+SELECT TOP 1 
+    @MailDestinatario = CAST(info.UFDEFNOTMAIL AS NVARCHAR(255)),
+    @NomeUtente       = CAST(u.name AS NVARCHAR(100))
+FROM dbo.cpusers AS u
+INNER JOIN dbo.ba_users_info AS info ON u.code = info.UFUSERID
+WHERE CAST(u.code AS NVARCHAR(50)) = @CodiceUtente;
+
+-- 2. Costruisce Oggetto
+SET @MailSubject = 'Notifica variazione fattura n. ' + @NumeroFattura;
+
+-- 3. Costruisce Corpo
+-- Ora usiamo solo le variabili @Locali che siamo sicuri essere testo
+SET @MailBody = 'È stata variata la fattura n. ' + @NumeroFattura + CHAR(13) + CHAR(10) +
+                'Nuova tipologia: ' + ISNULL(@TipoEtichetta, 'N/A') + CHAR(13) + CHAR(10) +
+                'Utente: ' + ISNULL(@NomeUtente, 'N/A') + ' (Codice: ' + @CodiceUtente + ')' + CHAR(13) + CHAR(10) +
+                'Data: ' + CONVERT(NVARCHAR, GETDATE(), 103) + ' ' + CONVERT(NVARCHAR, GETDATE(), 108);
+
+-- 4. Invia (Solo se c'è una mail valida)
+IF @MailDestinatario IS NOT NULL AND LEN(@MailDestinatario) > 0
+BEGIN
+    EXEC msdb.dbo.sp_send_dbmail
+        @profile_name = 'notifiche@cdcpaideia.com', -- email che invia 
+        @recipients = @MailDestinatario, -- lo prende dentro l'anagrafica utente di h20 
+        @copy_recipients = 'gestione.sinistri@paideiahospital.it', -- Utenti CC
+        @subject = @MailSubject,
+        @body = @MailBody;
+END

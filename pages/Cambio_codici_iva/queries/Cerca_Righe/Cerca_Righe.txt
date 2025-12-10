@@ -1,0 +1,7 @@
+SELECT 
+    ININVOICEID, 
+    INVATCODE, -- Questo è il codice che vogliamo cambiare
+    INARTICLEID,
+    INDESCRIPTION
+FROM ba_invoice 
+WHERE ININVOICEID = {{ Input_Search_ID.text }}

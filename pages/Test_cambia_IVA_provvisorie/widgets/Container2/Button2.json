@@ -1,0 +1,54 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 12,
+  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+  "buttonColor": "#1d4ed8",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "data-connection",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "3h8jpvr2gq",
+  "leftColumn": 43,
+  "minWidth": 120,
+  "mobileBottomRow": 70,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 4,
+  "mobileTopRow": 66,
+  "needsErrorInfo": false,
+  "onClick": "(() => {\n    // 1. Controllo preliminare campo vuoto\n    if (!InputUsername.text) {\n        showAlert('⚠️ Inserisci l\\'utente H2O prima di procedere.', 'error');\n        return;\n    }\n\n    // --- FASE 1: CONTROLLO AUTORIZZAZIONE (Query SQL) ---\n    check_auth_user.run(() => {\n        \n        // Recuperiamo il risultato dalla query\n        const authResult = check_auth_user.data[0];\n\n        // Se lo stato NON è 'CONNESSO', blocchiamo tutto e mostriamo l'errore specifico del DB\n        if (!authResult || authResult.Stato !== 'CONNESSO') {\n            const messaggioErrore = authResult ? authResult.Stato : \"Errore sconosciuto nel controllo utente\";\n            showAlert(`⛔ ${messaggioErrore}`, 'error'); \n            return; // STOP QUI\n        }\n\n        // --- FASE 2: UTENTE AUTORIZZATO -> PROCEDIAMO ---\n        \n        // A. Controllo SELEZIONE IVA\n        if (!NUOVA_IVA.selectedOptionValue) {\n            showAlert('⚠️ Errore: Devi selezionare un codice IVA dal menu a tendina!', 'error');\n            return;\n        }\n\n        // B. Controllo SELEZIONE RIGHE (Verifica che la tabella si chiami Table2)\n        if (!Table2.selectedRows || Table2.selectedRows.length === 0) {\n            showAlert('⚠️ Attenzione: Non hai selezionato nessuna riga da modificare!', 'warning');\n            return;\n        }\n\n        // --- FASE 3: ESECUZIONE DELL'UPDATE ---\n        const codiceIvaScelto = NUOVA_IVA.selectedOptionValue;\n        const righeSelezionate = Table2.selectedRows;\n\n        // Mappiamo le righe selezionate per aggiornarle una ad una\n        const processiDiUpdate = righeSelezionate.map(riga => {\n            return update_iva_riga.run({\n                nuovo_codice: codiceIvaScelto,\n                id_fattura: riga.ININVOICEID,\n                num_riga: riga.CPROWORD\n            });\n        });\n\n        // Attendiamo che tutti gli aggiornamenti finiscano\n        Promise.all(processiDiUpdate)\n            .then(() => {\n                showAlert(`✅ Successo! Modificate ${righeSelezionate.length} righe. Utente: ${InputUsername.text}`, 'success');\n                \n                // Aggiorniamo la vista\n                get_dettaglio_fattura.run(); \n                \n                // Opzionale: deseleziona le righe\n                resetWidget('Table2', true);\n            })\n            .catch((err) => {\n                console.log(err);\n                showAlert('❌ Errore durante il salvataggio dei dati.', 'error');\n            });\n\n    }, () => {\n        // Se la query check_auth_user fallisce tecnicamente (es. timeout o errore sintassi)\n        showAlert('❌ Errore critico: Impossibile verificare l\\'utente.', 'error');\n    });\n})()",
+  "parentColumnSpace": 13.567138671875,
+  "parentId": "be3v7isz80",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "INVIA MODIFICA\nFATTURE",
+  "topRow": 2,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "7cov0vqtdc",
+  "widgetName": "Button2"
+}

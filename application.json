@@ -1,0 +1,36 @@
+{
+  "appIsExample": false,
+  "appLayout": {
+    "type": "FLUID"
+  },
+  "applicationVersion": 2,
+  "collapseInvisibleWidgets": true,
+  "color": "#D9E7FF",
+  "embedSetting": {
+    "height": "720px",
+    "showNavigationBar": false,
+    "width": "1024px"
+  },
+  "evaluationVersion": 2,
+  "pages": [
+    {
+      "id": "Diretta_indiretta",
+      "isDefault": true
+    },
+    {
+      "id": "RIC-Diretta_Indiretta",
+      "isDefault": false
+    },
+    {
+      "id": "Cambio_codici_iva",
+      "isDefault": false
+    },
+    {
+      "id": "Test_cambia_IVA_provvisorie",
+      "isDefault": false
+    }
+  ],
+  "unpublishedAppLayout": {
+    "type": "FLUID"
+  }
+}

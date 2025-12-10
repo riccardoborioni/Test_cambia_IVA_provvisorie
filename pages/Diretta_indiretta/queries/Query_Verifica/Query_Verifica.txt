@@ -1,0 +1,9 @@
+SELECT TOP 1 
+    I.*,                       -- <--- Questo prende TUTTI i campi della fattura (ID, Data, Totale, ecc.)
+    P.DPPURPOSEDESCRIPTION     -- <--- Questo aggiunge solo la descrizione della causale
+FROM ba_invoice_m I
+LEFT JOIN ba_document_purpose P ON I.INPURPOSEID = P.DPPURPOSEID
+WHERE I.INDOCUMENTTYPE IN ('FA', 'NC')
+  AND I.INTAXYEAR = {{ Input_Anno.text }}
+  AND I.ININVOICENUMBER = {{ Input_Numero.text }}
+  AND (I.ININVOICESET IS NULL OR I.ININVOICESET = '')

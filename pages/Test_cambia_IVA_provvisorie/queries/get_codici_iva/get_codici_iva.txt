@@ -1,0 +1,6 @@
+SELECT 
+    IVCODIVA, 
+    IVDESIVA 
+FROM ba_vat_code
+WHERE IVCODIVA <> '0'  -- <--- Questo esclude il codice 0
+ORDER BY IVCODIVA ASC

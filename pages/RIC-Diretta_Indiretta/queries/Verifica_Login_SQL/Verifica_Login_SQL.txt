@@ -1,0 +1,9 @@
+SELECT 
+    CASE 
+        -- Calcola la differenza in secondi tra l'ultimo login e ADESSO
+        WHEN DATEDIFF(second, lastsuccessfullogin, GETDATE()) < 60 THEN 'SUCCESSO'
+        ELSE 'FALLITO'
+    END as Esito,
+    lastsuccessfullogin
+FROM dbo.cpusers
+WHERE name = '{{InputUsername.text}}';

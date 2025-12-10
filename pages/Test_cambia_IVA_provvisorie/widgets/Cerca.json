@@ -1,0 +1,56 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 16,
+  "boxShadow": "none",
+  "buttonColor": "#3b82f6",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "globe",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "7igq79kbbb",
+  "leftColumn": 46,
+  "minWidth": 120,
+  "mobileBottomRow": 12,
+  "mobileLeftColumn": 45,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 8,
+  "needsErrorInfo": false,
+  "onClick": "(() => {\n    // 1. PULIZIA TOTALE (Visiva, Memoria ed Errori)\n    if (get_fatture.clear) { get_fatture.clear(); } \n    storeValue('fattureDaModificare', []);\n    storeValue('errore_sp', '');\n\n    // 2. LOGICA PRIORITÀ\n    if (Input_Cartella.text) {\n        \n        // --- CASO A: CARTELLA ESISTENTE ---\n        resetWidget('Input_CF', true);\n        // resetWidget('Input_NumeroFattura', true); // Scommenta se vuoi pulire anche la fattura\n        \n        get_fatture.run();\n\n    } else if (Input_CF.text) {\n        \n        // --- CASO B: SOLO CF ---\n        get_fatture.run();\n\n    } else if (Input_NumeroFattura.text) {  // <--- ECCO L'ERRORE CORRETTO (Era Input_Fattura)\n        \n        // --- CASO C: SOLO FATTURA ---\n        get_fatture.run();\n\n    } else {\n        \n        // --- CASO D: TUTTO VUOTO ---\n        showAlert('⚠️ Nessun dato inserito (Scrivi CF, Cartella o N°Fattura)', 'error');\n    }\n})()",
+  "originalBottomRow": 16,
+  "originalTopRow": 7,
+  "parentColumnSpace": 14.234375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 60,
+  "text": "CERCA",
+  "topRow": 7,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "uxu2sl6iy9",
+  "widgetName": "Cerca"
+}

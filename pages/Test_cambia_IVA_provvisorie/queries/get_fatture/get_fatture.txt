@@ -1,0 +1,67 @@
+SELECT TOP 100
+    I.INMYCOMPANYID,
+    I.ININVOICEID,
+    I.INPURPOSEID,
+    I.INDOCUMENTTYPE,
+    I.INCUSTOMERDESCRIPTION,
+    I.INTAXYEAR,
+    I.ININVOICENUMBER,
+    I.ININVOICEDATE,
+    MAX(D.INHOSPITALIZATIONID) as INHOSPITALIZATIONID,
+    MAX(H.HOLASTNAME) as HOLASTNAME,
+    MAX(H.HOHOSPCOUNTER) as HOHOSPCOUNTER, 
+    MAX(P.DPPURPOSEDESCRIPTION) as DPPURPOSEDESCRIPTION
+
+FROM ba_invoice_m I
+LEFT JOIN ba_document_purpose P ON I.INPURPOSEID = P.DPPURPOSEID
+LEFT JOIN ba_invoice D ON I.ININVOICEID = D.ININVOICEID
+LEFT JOIN ba_hospitalization H ON D.INHOSPITALIZATIONID = H.HOHOSPID
+
+WHERE I.INDOCUMENTTYPE IN ('FA', 'NC')
+  AND (I.ININVOICESET IS NULL OR I.ININVOICESET = '')
+  AND I.INSTATE = 'P'
+
+  -- *** LOGICA DI RICERCA ***
+  AND (
+       -- 1. Cerca per CF
+       (
+           '{{Input_CF.text}}' != ''
+           AND I.INCUFISCALCODE = '{{Input_CF.text}}' 
+           AND ('{{Input_Anno.text}}' = '' OR I.INTAXYEAR = '{{Input_Anno.text}}')
+       )
+       OR 
+       
+       -- 2. Cerca per Cartella
+       (
+           '{{Input_Cartella.text}}' != ''
+           AND H.HOHOSPCOUNTER = '{{Input_Cartella.text}}' 
+           AND H.HOHOSPYEAR = '{{Input_Anno.text}}'
+       )
+       OR
+
+       -- 3. Cerca per NUMERO FATTURA (Quello che hai corretto tu!)
+       (
+           '{{Input_NumeroFattura.text}}' != ''
+           
+           -- RTRIM è il trucco: taglia gli spazi vuoti finali del database
+           AND RTRIM(I.ININVOICENUMBER) = '{{Input_NumeroFattura.text}}'
+           
+           -- Controllo Anno (importante: se l'input anno è vuoto, cerca in tutti gli anni)
+           AND (
+                 '{{Input_Anno.text}}' = '' 
+                 OR I.INTAXYEAR = '{{Input_Anno.text}}'
+               )
+       )
+  )
+
+GROUP BY 
+    I.INMYCOMPANYID,
+    I.ININVOICEID,
+    I.INPURPOSEID,
+    I.INDOCUMENTTYPE,
+    I.INCUSTOMERDESCRIPTION,
+    I.INTAXYEAR,
+    I.ININVOICENUMBER,
+    I.ININVOICEDATE
+
+ORDER BY I.ININVOICEDATE DESC;

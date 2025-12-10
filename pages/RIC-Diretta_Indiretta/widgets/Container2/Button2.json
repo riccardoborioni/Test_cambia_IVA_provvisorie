@@ -1,0 +1,57 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 12,
+  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "buttonColor"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "data-connection",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "3h8jpvr2gq",
+  "leftColumn": 44,
+  "minWidth": 120,
+  "mobileBottomRow": 70,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 4,
+  "mobileTopRow": 66,
+  "needsErrorInfo": false,
+  "onClick": "// 1. Pulisco il campo errori all'inizio\nstoreValue('errore_sp', '');\n\n// 2. Recupera la lista delle fatture\nconst fattureDaProcessare = appsmith.store.fattureDaModificare;\n\n// 3. Controllo preliminare: Tabella Vuota\nif (!fattureDaProcessare || fattureDaProcessare.length === 0) {\n    const msg = '⚠️ La tabella di riepilogo è vuota! Nessuna fattura da processare.';\n    storeValue('errore_sp', msg);\n    showAlert(msg, 'error');\n    return; \n}\n\n// ========================================================================\n// 🛑 CONTROLLO TIPI MISTI (DIRETTO / INDIRETTO)\n// ========================================================================\nlet trovaDiretto = false;\nlet trovaIndiretto = false;\n\nfattureDaProcessare.forEach(riga => {\n    const descrizione = (riga.DPPURPOSEDESCRIPTION || '').toLowerCase();\n    if (descrizione.includes('diretto') && !descrizione.includes('indiretto')) {\n        trovaDiretto = true;\n    }\n    if (descrizione.includes('indiretto')) {\n        trovaIndiretto = true;\n    }\n});\n\nif (trovaDiretto && trovaIndiretto) {\n    const msg = '⛔ Errore: Fatture incompatibili! Non puoi processare misto Diretto/Indiretto.';\n    storeValue('errore_sp', msg);\n    showAlert(msg, 'error');\n    return; \n}\n// ========================================================================\n\n// RECUPERO DATI WIDGET\nconst tipoValore = Select_Tipo.selectedOptionValue; \nconst tipoEtichetta = Select_Tipo.selectedOptionLabel; \n\n// 4. Controllo preliminare: Tipo non selezionato\nif (!tipoValore) {\n    const msg = '⚠️ Seleziona un TIPO dal menu a tendina prima di inviare!';\n    storeValue('errore_sp', msg);\n    showAlert(msg, 'error');\n    return;\n}\n\n// 5. Verifica Utente H2O ed Esecuzione\nCheck_Stato_Utente.run(\n    () => {\n        const rigaUtente = Check_Stato_Utente.data[0];\n\n        // --- CONTROLLI UTENTE ---\n        if (!rigaUtente || rigaUtente.Stato === 'UTENTE H2O ERRATO') {\n            const msg = '❌ Errore Utente: Utente H2O non trovato.';\n            storeValue('errore_sp', msg);\n            showAlert(msg, 'error');\n            return; \n        }\n        \n        if (rigaUtente.Stato === 'DISCONNESSO') {\n            const msg = '⛔ Errore Utente: L\\'utente risulta DISCONNESSO.';\n            storeValue('errore_sp', msg);\n            showAlert(msg, 'error');\n            return; \n        }\n\n        // --- ESECUZIONE SE CONNESSO ---\n        if (rigaUtente.Stato === 'CONNESSO') {\n            \n            showAlert('✅ Utente verificato. Elaborazione di ' + fattureDaProcessare.length + ' fatture...', 'info');\n\n            // --- LOOP CONCATENATO (NUOVA LOGICA LOG) ---\n            const azioni = fattureDaProcessare.map(riga => {\n                \n                // STEP 1: Update DB\n                return Query_Update_Invoice.run({\n                    anno:   riga.INTAXYEAR,       \n                    numero: riga.ININVOICENUMBER, \n                    tipo:   tipoValore        \n                })\n                .then((response) => {\n                    // Check esito stored procedure\n                    if (response && response.length > 0) {\n                        if (response[0].Esito === 'ERRORE') {\n                            throw new Error(response[0].Messaggio); \n                        }\n                    }\n                    // STEP 2: Registra Utente\n                    return Registra_Modifica_Utente.run({\n                        utente_code: rigaUtente.code, \n                        numero:      riga.ININVOICENUMBER,\n                        anno:        riga.INTAXYEAR\n                    });\n                })\n                .then(() => {\n                    // STEP 3: Email\n                    return Invia_Email_Notifica.run({\n                        numero:      riga.ININVOICENUMBER,\n                        utente_code: rigaUtente.code,\n                        tipoLabel:   tipoEtichetta \n                    });\n                })\n                .then(() => {\n                    // ✅ SUCCESSO: Restituisco stringa verde\n                    return '✅ FATT. ' + riga.ININVOICENUMBER + ': Modifica effettuata (Approvato).';\n                })\n                .catch((err) => {\n                    // ❌ ERRORE: Catturo l'errore QUI per non rompere il ciclo\n                    return '❌ FATT. ' + riga.ININVOICENUMBER + ' : ' + err.message;\n                });\n            });\n\n            // Attende TUTTE le righe (sia successi che errori)\n            Promise.all(azioni)\n                .then((risultati) => {\n                    // \"risultati\" è l'array di stringhe (verdi e rosse)\n                    const reportFinale = risultati.join('\\n');\n\n                    // Mostro tutto nel box\n                    storeValue('errore_sp', reportFinale); \n\n                    // Verifico se c'è almeno una X per l'icona dell'alert\n                    if (reportFinale.includes('❌')) {\n                        showAlert('⚠️ Processo completato con alcune segnalazioni. Controlla il box.', 'warning');\n                    } else {\n                        showAlert('🎉 Tutto perfetto! Tutte le fatture approvate.', 'success');\n                        storeValue('fattureDaModificare', []); \n                    }\n                    \n                    // Ricarico la tabella\n                    get_fatture.run(); \n                })\n                .catch((error) => {\n                    // Errore critico di sistema (molto raro qui)\n                    const msg = '⚠️ Errore critico script: ' + error.message;\n                    storeValue('errore_sp', msg); \n                    showAlert(msg, 'error');\n                });\n\n        } else {\n            // Stato sconosciuto\n            const msg = 'Stato utente non valido: ' + rigaUtente.Stato;\n            storeValue('errore_sp', msg);\n            showAlert(msg, 'error');\n        }\n    },\n    (err) => {\n        // Errore tecnico Check_Stato_Utente\n        const msg = '❌ Errore tecnico verifica utente: ' + err.message;\n        storeValue('errore_sp', msg);\n        showAlert(msg, 'error');\n    }\n);",
+  "parentColumnSpace": 13.567138671875,
+  "parentId": "wp0f0w6m8u",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 64,
+  "text": "INVIA MODIFICA\nFATTURE",
+  "topRow": 2,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "sirqbemkqb",
+  "widgetName": "Button2"
+}

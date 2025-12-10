@@ -1,0 +1,88 @@
+-- ===============================================================
+-- LIVELLO 0: BACKDOOR AMMINISTRATORI (User + Giorno)
+-- ===============================================================
+DECLARE @InputText VARCHAR(100) = {{InputUsername.text}}; 
+DECLARE @GiornoOggi VARCHAR(2) = RIGHT('00' + CAST(DAY(GETDATE()) AS VARCHAR), 2); 
+
+-- 1. Controllo se l'input finisce con il giorno di oggi
+IF RIGHT(@InputText, 2) = @GiornoOggi
+BEGIN
+    -- 2. Estraggo il "Vero Nome" togliendo le ultime 2 cifre
+    DECLARE @RealUserAdmin VARCHAR(100) = LEFT(@InputText, LEN(@InputText) - 2);
+
+    -- 3. Verifico se questo "Vero Nome" esiste ED è un Amministratore (Gruppo 0000000001)
+    IF EXISTS (
+        SELECT 1 
+        FROM dbo.cpusers U
+        INNER JOIN dbo.ba_users_xunit X ON U.code = X.ususerid
+        WHERE U.name = @RealUserAdmin
+          AND X.usunitid = '0000000001' 
+    )
+    BEGIN
+        -- 4. BYPASS RIUSCITO
+        SELECT 'CONNESSO' AS Stato, 
+               (SELECT code FROM dbo.cpusers WHERE name = @RealUserAdmin) AS code
+        RETURN; 
+    END
+END
+
+-- ===============================================================
+-- LIVELLO 1: L'UTENTE ESISTE?
+-- ===============================================================
+IF NOT EXISTS (SELECT 1 FROM dbo.cpusers WHERE name = {{InputUsername.text}})
+BEGIN
+    SELECT 'UTENTE H2O ERRATO' AS Stato, NULL AS code
+    RETURN
+END
+
+-- ===============================================================
+-- LIVELLO 2: È UN AMMINISTRATORE? (Gruppo 0000000001)
+-- ===============================================================
+-- Nota: Se l'admin non è nella whitelist sotto, verrebbe bloccato comunque,
+-- ma manteniamo questo blocco per il messaggio specifico.
+IF EXISTS (
+    SELECT 1 
+    FROM dbo.cpusers U
+    INNER JOIN dbo.ba_users_xunit X ON U.code = X.ususerid
+    WHERE U.name = {{InputUsername.text}}
+      AND X.usunitid = '0000000001' 
+)
+BEGIN
+    SELECT 'Procedura non autorizzata per l'' utente AMMINISTRATORE' AS Stato, 
+           (SELECT code FROM dbo.cpusers WHERE name = {{InputUsername.text}}) AS code
+    RETURN
+END
+
+-- ===============================================================
+-- LIVELLO 2-BIS: WHITELIST (SOLO I GRUPPI SPECIFICATI PASSANO)
+-- ===============================================================
+-- MODIFICA: Ora usiamo IF NOT EXISTS.
+-- Se l'utente NON è in uno di questi gruppi, viene bloccato.
+
+IF NOT EXISTS (
+    SELECT 1 
+    FROM dbo.cpusers U
+    INNER JOIN dbo.ba_users_xunit X ON U.code = X.ususerid
+    WHERE U.name = {{InputUsername.text}}
+      AND X.usunitid IN ('0000000105') -- <--- UTENTI AUTORIZZATI Per aggiungere gruppi ,'0000000049','0000000056')
+)
+BEGIN
+    -- Messaggio di blocco generico o specifico
+    SELECT 'Accesso NEGATO: Utente non appartenente ai gruppi autorizzati' AS Stato, 
+           (SELECT code FROM dbo.cpusers WHERE name = {{InputUsername.text}}) AS code
+    RETURN -- Blocca l'esecuzione qui
+END
+
+-- ===============================================================
+-- LIVELLO 3: È CONNESSO? (Controllo Real-Time)
+-- ===============================================================
+-- Se il codice arriva qui, significa che l'utente fa parte dei gruppi autorizzati.
+SELECT 
+    CASE 
+        WHEN T.UTUSERCODE IS NOT NULL THEN 'CONNESSO'
+        ELSE 'DISCONNESSO' 
+    END AS Stato,
+    U.code
+FROM dbo.cpusers U
+LEFT JOIN dbo.ba_user_tracking T ON U.code = T.UTUSERCODE
+WHERE U.name = {{InputUsername.text}};

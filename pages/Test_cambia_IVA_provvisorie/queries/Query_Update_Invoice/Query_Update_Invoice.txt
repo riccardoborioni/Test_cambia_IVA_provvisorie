@@ -1,0 +1,4 @@
+EXEC sp_Update_Invoice_Purpose_With_Mail
+  @P_TaxYear = {{this.params.anno}},
+  @P_InvoiceNumber = {{this.params.numero}},
+  @P_PurposeType = {{this.params.tipo}}

@@ -1,0 +1,4 @@
+SELECT * FROM ba_invoice
+WHERE 
+    -- RTRIM rimuove gli spazi vuoti a destra per garantire che l'ID corrisponda
+    RTRIM(ININVOICEID) = RTRIM('{{Table1.selectedRow.ININVOICEID}}')

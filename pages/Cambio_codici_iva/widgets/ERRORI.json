@@ -1,0 +1,61 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 77,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    },
+    {
+      "key": "textColor"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "textColor"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "zzpnsi0eli",
+  "leftColumn": 1,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 77,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 17,
+  "mobileTopRow": 73,
+  "needsErrorInfo": false,
+  "overflow": "NONE",
+  "parentColumnSpace": 14.234375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 45,
+  "shouldTruncate": false,
+  "text": "{{\n  // Se la query sta girando mostra la clessidra\n  Esegui_Update_SP.isLoading ? \"⏳ Elaborazione in corso...\" : \n\n  // Se abbiamo un risultato dalla SP, mostriamo il messaggio\n  (Esegui_Update_SP.data && Esegui_Update_SP.data.length > 0) ? \n  Esegui_Update_SP.data[0].Messaggio :\n\n  // Se non abbiamo ancora fatto nulla\n  \"Pronto. In attesa di comando.\"\n}}",
+  "textAlign": "LEFT",
+  "textColor": "{{\n  Esegui_Update_SP.data && Esegui_Update_SP.data.length > 0 && Esegui_Update_SP.data[0].Esito === 'SUCCESSO' \n  ? \"#008000\"  // VERDE (se OK)\n  : \"#FF0000\"  // ROSSO (se KO o Nessuna Modifica)\n}}",
+  "topRow": 73,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "upkujbwp0e",
+  "widgetName": "ERRORI"
+}

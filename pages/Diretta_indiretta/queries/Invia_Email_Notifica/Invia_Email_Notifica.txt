@@ -1,0 +1,35 @@
+DECLARE @MailDestinatario NVARCHAR(255);
+DECLARE @MailSubject NVARCHAR(255);
+DECLARE @MailBody NVARCHAR(MAX);
+DECLARE @NomeUtente NVARCHAR(100);
+DECLARE @NumeroFattura NVARCHAR(50); -- Variabile per gestire il numero come testo
+
+-- Convertiamo subito il numero in testo per evitare errori
+SET @NumeroFattura = CAST({{ Input_Numero.text }} AS NVARCHAR(50));
+
+-- 1. Recupera email e nome
+SELECT TOP 1 
+    @MailDestinatario = info.UFDEFNOTMAIL,
+    @NomeUtente = u.name
+FROM dbo.cpusers AS u
+INNER JOIN dbo.ba_users_info AS info ON u.code = info.UFUSERID
+WHERE u.code = {{ Check_Stato_Utente.data[0].code }};
+
+-- 2. Costruisce Oggetto (Usa la variabile testo)
+SET @MailSubject = 'Notifica variazione fattura n. ' + @NumeroFattura;
+
+-- 3. Costruisce Corpo (Usa la variabile testo)
+SET @MailBody = 'È stata variata la fattura n. ' + @NumeroFattura + CHAR(13) + CHAR(10) +
+                'Nuova tipologia: ' + '{{ Select_Tipo.selectedOptionLabel }}' + CHAR(13) + CHAR(10) +
+                'Utente: ' + ISNULL(@NomeUtente, 'N/A') + ' (Codice: ' + CAST('{{ Check_Stato_Utente.data[0].code }}' AS NVARCHAR) + ')' + CHAR(13) + CHAR(10) +
+                'Data: ' + CONVERT(NVARCHAR, GETDATE(), 103) + ' ' + CONVERT(NVARCHAR, GETDATE(), 108);
+
+-- 4. Invia
+IF @MailDestinatario IS NOT NULL AND LEN(@MailDestinatario) > 0
+BEGIN
+    EXEC msdb.dbo.sp_send_dbmail
+        @profile_name = 'notifiche@cdcpaideia.com',
+        @recipients = @MailDestinatario,
+        @subject = @MailSubject,
+        @body = @MailBody;
+END

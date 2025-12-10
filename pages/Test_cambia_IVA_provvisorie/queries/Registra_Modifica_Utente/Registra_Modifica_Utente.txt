@@ -1,0 +1,9 @@
+UPDATE ba_invoice_m 
+SET 
+    UTCV = {{ this.params.utente_code }},  -- Parametro passato dal JS
+    UTDV = GETDATE()
+WHERE 
+    ININVOICENUMBER = {{ this.params.numero }} 
+    AND INTAXYEAR = {{ this.params.anno }}
+    -- FILTRO DI SICUREZZA
+    AND (ININVOICESET IS NULL OR LTRIM(RTRIM(ININVOICESET)) = '');
