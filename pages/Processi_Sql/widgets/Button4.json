@@ -33,7 +33,7 @@
   "mobileRightColumn": 64,
   "mobileTopRow": 5,
   "needsErrorInfo": false,
-  "onClick": "{{\n  Ba_Medic_Materdei.run(() => {\n    storeValue('vista_attiva', 'MEDIC');\nstoreValue('db_attivo', 'VERDE');\n  }, () => {})\n}}",
+  "onClick": "{{\n  Ba_Medic_Materdei.run(() => {\n    storeValue('vista_attiva', 'MEDIC');\nstoreValue('db_attivo', 'Materdei');\n  }, () => {})\n}}",
   "parentColumnSpace": 14.234375,
   "parentId": "0",
   "parentRowSpace": 10,

@@ -36,7 +36,7 @@
   "mobileRightColumn": 63,
   "mobileTopRow": 4,
   "needsErrorInfo": false,
-  "onClick": "{{\n  Get_Blocchi_Paideia.run(() => {\n    storeValue('vista_attiva', 'PROCESSI');\nstoreValue('db_attivo', 'BLU');\n  }, () => {})\n}}",
+  "onClick": "{{\n  Get_Blocchi_Paideia.run(() => {\n    storeValue('vista_attiva', 'PROCESSI');\nstoreValue('db_attivo', 'Paideia');\n  }, () => {})\n}}",
   "parentColumnSpace": 14.234375,
   "parentId": "0",
   "parentRowSpace": 10,

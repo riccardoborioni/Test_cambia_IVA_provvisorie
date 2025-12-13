@@ -33,7 +33,7 @@
   "mobileRightColumn": 31,
   "mobileTopRow": 5,
   "needsErrorInfo": false,
-  "onClick": "{{\n  Get_Blocchi_Materdei.run(() => {\n    storeValue('vista_attiva', 'MD_Processi');\nstoreValue('db_attivo', 'VERDE');\n  }, () => {})\n}}",
+  "onClick": "{{\n  Get_Blocchi_Materdei.run(() => {\n    storeValue('vista_attiva', 'MD_Processi');\nstoreValue('db_attivo', 'Materdei');\n  }, () => {})\n}}",
   "parentColumnSpace": 14.234375,
   "parentId": "0",
   "parentRowSpace": 10,

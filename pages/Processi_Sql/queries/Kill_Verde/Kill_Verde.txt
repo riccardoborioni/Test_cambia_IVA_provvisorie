@@ -1,1 +1,0 @@
-KILL {{Table1.triggeredRow.session_id}}

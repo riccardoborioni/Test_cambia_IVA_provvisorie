@@ -33,7 +33,7 @@
   "mobileRightColumn": 48,
   "mobileTopRow": 5,
   "needsErrorInfo": false,
-  "onClick": "{{\n  Blocco_Hade_Materdei.run(() => {\n    storeValue('vista_attiva', 'BLOCCO_HADE');\nstoreValue('db_attivo', 'VERDE');\n  }, () => {})\n}}",
+  "onClick": "{{\n  Blocco_Hade_Materdei.run(() => {\n    storeValue('vista_attiva', 'BLOCCO_HADE');\nstoreValue('db_attivo', 'Materdei');\n  }, () => {})\n}}",
   "parentColumnSpace": 14.234375,
   "parentId": "0",
   "parentRowSpace": 10,
