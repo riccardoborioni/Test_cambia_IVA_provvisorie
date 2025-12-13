@@ -1,0 +1,39 @@
+SELECT 
+    -- Identificativo Sessione
+    Ses.session_id, 
+    
+    -- Nome Utente
+    Ses.login_name AS utente,
+    
+    -- Nome del Database
+    DB_NAME(Ses.database_id) AS nome_db,
+    
+    -- Stato della sessione (es. 'sleeping' o 'running')
+    Ses.status AS stato,
+    
+    -- Chi sta bloccando? (Solo se c'è una richiesta attiva)
+    ISNULL(NULLIF(Req.blocking_session_id, 0), NULL) AS blocking_id,
+    
+    -- Tempo (mostra 0 se dorme)
+    ISNULL(Req.total_elapsed_time / 1000, 0) AS secondi_trascorsi,
+    
+    -- Testo della query 
+    -- (Se dorme mostriamo un testo standard, se lavora mostriamo la query)
+    CASE 
+        WHEN ST.text IS NOT NULL THEN 
+            SUBSTRING(ST.text, (Req.statement_start_offset/2) + 1,
+            ((CASE Req.statement_end_offset
+                WHEN -1 THEN DATALENGTH(ST.text)
+                ELSE Req.statement_end_offset
+            END - Req.statement_start_offset)/2) + 1)
+        ELSE '--- Connesso / In attesa ---' 
+    END AS query_text
+
+FROM 
+    sys.dm_exec_sessions AS Ses
+    LEFT JOIN sys.dm_exec_requests AS Req ON Ses.session_id = Req.session_id
+    OUTER APPLY sys.dm_exec_sql_text(Req.sql_handle) AS ST
+
+WHERE 
+    Ses.session_id > 50             -- Ignora processi interni
+    AND Ses.session_id <> @@SPID    -- Ignora Appsmith stesso

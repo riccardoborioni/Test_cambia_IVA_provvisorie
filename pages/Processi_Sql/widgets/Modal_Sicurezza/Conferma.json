@@ -1,0 +1,53 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 25,
+  "boxShadow": "none",
+  "buttonColor": "#b91c1c",
+  "buttonStyle": "PRIMARY_BUTTON",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "oyuy1m1pce",
+  "leftColumn": 47,
+  "minWidth": 120,
+  "mobileBottomRow": 22,
+  "mobileLeftColumn": 47,
+  "mobileRightColumn": 63,
+  "mobileTopRow": 18,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  // Controllo se siamo su BLU o VERDE\n  appsmith.store.db_attivo === 'BLU' ? \n  \n  // SE BLU\n  Kill_Blu.run(() => {\n      closeModal('Modal1'); // Chiudo il modale (controlla se si chiama Modal1 o Modal_Sicurezza)\n      showAlert('Processo ' + appsmith.store.kill_id + ' terminato (BLU)', 'success');\n      \n      // Aggiorno la tabella ricaricando i dati\n      appsmith.store.vista_attiva === 'MEDIC' ? Ba_Medic_Paideia.run() : Get_Blocchi_Paideia.run(); \n  }, () => showAlert('Errore Kill Blu', 'error')) \n  \n  : \n  \n  // SE VERDE\n  Kill_Verde.run(() => {\n      closeModal('Modal1'); \n      showAlert('Processo ' + appsmith.store.kill_id + ' terminato (VERDE)', 'success');\n      \n      // Aggiorno la tabella ricaricando i dati\n      appsmith.store.vista_attiva === 'MEDIC' ? Ba_Medic_Verde.run() : Get_Blocchi_Verde.run();\n  }, () => showAlert('Errore Kill Verde', 'error'))\n}}",
+  "originalBottomRow": 25,
+  "originalTopRow": 21,
+  "parentId": "omfdu2wmru",
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "Conferma",
+  "topRow": 21,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "9jflr8dsaz",
+  "widgetName": "Conferma"
+}

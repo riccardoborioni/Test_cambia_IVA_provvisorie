@@ -3,19 +3,36 @@
   "appLayout": {
     "type": "FLUID"
   },
+  "applicationDetail": {
+    "navigationSetting": {
+      "colorStyle": "light",
+      "logoAssetId": "",
+      "logoConfiguration": "logoAndApplicationTitle",
+      "navStyle": "stacked",
+      "orientation": "top",
+      "position": "static",
+      "showNavbar": true,
+      "showSignIn": true
+    },
+    "themeSetting": {
+      "appMaxWidth": "LARGE",
+      "density": 1.0,
+      "sizing": 1.0
+    }
+  },
   "applicationVersion": 2,
   "collapseInvisibleWidgets": true,
   "color": "#D9E7FF",
   "embedSetting": {
     "height": "720px",
-    "showNavigationBar": false,
+    "showNavigationBar": true,
     "width": "1024px"
   },
   "evaluationVersion": 2,
   "pages": [
     {
       "id": "Diretta_indiretta",
-      "isDefault": true
+      "isDefault": false
     },
     {
       "id": "RIC-Diretta_Indiretta",
@@ -27,10 +44,35 @@
     },
     {
       "id": "Test_cambia_IVA_provvisorie",
+      "isDefault": true
+    },
+    {
+      "id": "Accreditamento",
+      "isDefault": false
+    },
+    {
+      "id": "Processi_Sql",
       "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
     "type": "FLUID"
+  },
+  "unpublishedApplicationDetail": {
+    "navigationSetting": {
+      "colorStyle": "light",
+      "logoAssetId": "",
+      "logoConfiguration": "logoAndApplicationTitle",
+      "navStyle": "stacked",
+      "orientation": "top",
+      "position": "static",
+      "showNavbar": true,
+      "showSignIn": true
+    },
+    "themeSetting": {
+      "appMaxWidth": "LARGE",
+      "density": 1.0,
+      "sizing": 1.0
+    }
   }
 }

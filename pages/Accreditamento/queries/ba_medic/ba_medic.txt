@@ -1,0 +1,11 @@
+SELECT 
+    [basetbl].[RSLASTNAME], 
+    [basetbl].[RSFISCALCODE],
+    [basetbl].[RSMEDICID], 
+    [basetbl].[RSFIRSTNAME],
+    [basetbl].[RSVALIDFROM],       -- Campo usato nel filtro data inizio
+    [basetbl].[RSVALIDTO],         -- Campo usato nel filtro data fine
+    [basetbl].[RSACCREDITAZIONTO], -- Campo usato nel filtro accreditamento
+    [basetbl].[RSMYCOMPANY]
+FROM [dbo].[ba_medic] [basetbl]
+ORDER BY [RSMYCOMPANY] ASC
