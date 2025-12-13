@@ -1,24 +1,36 @@
 SELECT 
-    -- Identificativo Sessione
+    -- 1. IDENTITÀ
     Ses.session_id, 
-    
-    -- Nome Utente
     Ses.login_name AS utente,
-    
-    -- Nome del Database
+    Ses.host_name AS nome_host,         -- Nome del PC
+    Ses.program_name AS applicazione,   -- Nome del software (es. Management Studio)
     DB_NAME(Ses.database_id) AS nome_db,
+
+    -- 2. STATO
+    Ses.status AS stato,                -- Running / Sleeping
+    ISNULL(Req.command, '---') AS comando, -- SELECT, UPDATE, INSERT...
     
-    -- Stato della sessione (es. 'sleeping' o 'running')
-    Ses.status AS stato,
+    -- 3. GESTIONE BLOCCHI (Cruciale)
+    -- Chi mi sta bloccando?
+    ISNULL(NULLIF(Req.blocking_session_id, 0), NULL) AS bloccato_da,
     
-    -- Chi sta bloccando? (Solo se c'è una richiesta attiva)
-    ISNULL(NULLIF(Req.blocking_session_id, 0), NULL) AS blocking_id,
-    
-    -- Tempo (mostra 0 se dorme)
+    -- SONO IO IL CAPO DEI BLOCCHI? (Head Blocker)
+    -- Logica: Se sto bloccando qualcuno (esisto nella colonna blocking degli altri)
+    -- E nessuno sta bloccando me (il mio blocking_id è 0), allora sono il CAPO.
+    CASE 
+        WHEN EXISTS (SELECT 1 FROM sys.dm_exec_requests R2 WHERE R2.blocking_session_id = Ses.session_id)
+             AND ISNULL(Req.blocking_session_id, 0) = 0 
+        THEN 1 
+        ELSE 0 
+    END AS is_head_blocker,
+
+    -- 4. TEMPI E ATTESE
     ISNULL(Req.total_elapsed_time / 1000, 0) AS secondi_trascorsi,
-    
-    -- Testo della query 
-    -- (Se dorme mostriamo un testo standard, se lavora mostriamo la query)
+    Req.wait_type AS motivo_attesa,     -- Perché aspetto? (es. LCK_M_X)
+    Req.wait_resource AS risorsa_attesa,-- Quale riga/tabella sto aspettando?
+    Ses.open_transaction_count AS transazioni_aperte, -- Ho transazioni non chiuse?
+
+    -- 5. TESTO QUERY
     CASE 
         WHEN ST.text IS NOT NULL THEN 
             SUBSTRING(ST.text, (Req.statement_start_offset/2) + 1,
@@ -26,7 +38,7 @@ SELECT
                 WHEN -1 THEN DATALENGTH(ST.text)
                 ELSE Req.statement_end_offset
             END - Req.statement_start_offset)/2) + 1)
-        ELSE '--- Connesso / In attesa ---' 
+        ELSE '' 
     END AS query_text
 
 FROM 
@@ -35,5 +47,5 @@ FROM
     OUTER APPLY sys.dm_exec_sql_text(Req.sql_handle) AS ST
 
 WHERE 
-    Ses.session_id > 50             -- Ignora processi interni
-    AND Ses.session_id <> @@SPID    -- Ignora Appsmith stesso
+    Ses.is_user_process = 1       -- Solo processi utente
+    AND Ses.session_id <> @@SPID  -- Nascondi me stesso
