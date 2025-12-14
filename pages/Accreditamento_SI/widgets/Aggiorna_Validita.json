@@ -1,0 +1,55 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 23,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "pan269l1pb",
+  "leftColumn": 30,
+  "minWidth": 120,
+  "mobileBottomRow": 23,
+  "mobileLeftColumn": 20,
+  "mobileRightColumn": 36,
+  "mobileTopRow": 19,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  // Prima query\n  Update_BA_MEDIC.run()\n    .then(() => {\n       // Se la prima va bene, parte la seconda\n       return Update_STRUCTURE.run(); \n    })\n    .then(() => {\n       // Messaggio finale\n       showAlert('Tutto aggiornato correttamente!', 'success');\n    })\n    .catch((error) => {\n       // Se qualcosa va storto\n       showAlert('Errore: ' + JSON.stringify(error), 'error');\n    });\n}}",
+  "parentColumnSpace": 12.3125,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 46,
+  "text": "Aggiorna Validità",
+  "topRow": 19,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "n0d89m8qw7",
+  "widgetName": "Aggiorna_Validita"
+}
