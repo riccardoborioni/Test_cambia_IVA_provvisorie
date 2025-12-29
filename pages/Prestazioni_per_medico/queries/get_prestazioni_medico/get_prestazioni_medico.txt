@@ -1,0 +1,19 @@
+SELECT 
+    M.ininvoicenumber AS "NUMERO FATTURA",
+    M.ININVOICEDATE AS "DATA FATTURA",
+    I.INARTICLEID AS "CODICE ARTICOLO",
+    I.INFULLDESCRIPTION AS "DESCRIZIONE PRESTAZIONE",
+    (MED.RSLASTNAME + ' ' + MED.RSFIRSTNAME) AS "MEDICO"
+FROM Ba_invoice I
+JOIN Ba_invoice_M M ON I.ININVOICEID = M.ININVOICEID
+JOIN ba_medic MED ON I.INMEDICINTERNAL = MED.RSMEDICID
+WHERE 
+    -- Selezioniamo il valore e puliamo eventuali spazi
+    I.INMEDICINTERNAL = {{ select_medico.selectedOptionValue.trim() }}
+    
+    -- Trasformiamo il mese in numero
+    AND MONTH(M.ININVOICEDATE) = {{ Number(select_mese.selectedOptionValue) }}
+    
+    -- Togliamo l'anno per sicurezza: se vedi i 7 dati, poi lo rimettiamo
+    AND YEAR(M.ININVOICEDATE) = 2025
+ORDER BY M.ININVOICEDATE DESC;

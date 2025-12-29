@@ -1,23 +1,23 @@
 {
-  "gitSyncId": "6601851cbf3e805bd6a4b13a_52919ef5-99fb-4bf2-bca0-0ef08568c933",
+  "gitSyncId": "6601851cbf3e805bd6a4b13a_ddd1cfe6-c198-47e9-945c-d32544f1c690",
   "unpublishedPage": {
     "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 1080,
+          "bottomRow": 950,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
           "dynamicBindingPathList": [],
           "leftColumn": 0,
-          "minHeight": 550,
+          "minHeight": 760,
           "parentColumnSpace": 1,
           "parentRowSpace": 1,
           "rightColumn": 1224,
           "snapColumns": 64,
-          "snapRows": 53,
+          "snapRows": 74,
           "topRow": 0,
           "type": "CANVAS_WIDGET",
           "version": 94,
@@ -26,7 +26,7 @@
         }
       }
     ],
-    "name": "RIC-Diretta_Indiretta",
-    "slug": "ric-diretta-indiretta"
+    "name": "Prestazioni_per_medico",
+    "slug": "prestazioni-per-medico"
   }
 }

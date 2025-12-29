@@ -57,6 +57,14 @@
     {
       "id": "Accreditamento_SI",
       "isDefault": false
+    },
+    {
+      "id": "Incassi_Giorno",
+      "isDefault": false
+    },
+    {
+      "id": "Prestazioni_per_medico",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
