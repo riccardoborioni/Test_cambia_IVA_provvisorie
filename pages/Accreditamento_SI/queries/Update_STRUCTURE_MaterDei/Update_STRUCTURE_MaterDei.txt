@@ -1,3 +1,0 @@
-UPDATE ba_medic_structure
-SET MSVALIDTO = DATEADD(day, 1, GETDATE())
-WHERE MSMEDICID = '{{Select1.selectedOptionValue}}';

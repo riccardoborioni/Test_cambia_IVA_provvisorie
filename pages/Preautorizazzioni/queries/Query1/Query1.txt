@@ -1,0 +1,5 @@
+SELECT *
+FROM ba_cash_movement
+WHERE CMCASHACCOUNT = '000000000000004'
+  AND CMYEAR = {{ Input3.text }} -- Assicurati che Input3 contenga solo il numero
+  AND CAST(CMREGDATE AS DATE) = CAST({{ DatePicker1.selectedDate }} AS DATE)

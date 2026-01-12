@@ -1,8 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 57,
-  "disableLink": true,
+  "bottomRow": 39,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -12,9 +11,6 @@
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -24,33 +20,31 @@
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "lsmn3rm65k",
-  "leftColumn": 14,
+  "key": "f0kfyv26ci",
+  "leftColumn": 25,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 31,
-  "mobileLeftColumn": 4,
-  "mobileRightColumn": 20,
-  "mobileTopRow": 27,
+  "mobileBottomRow": 39,
+  "mobileLeftColumn": 25,
+  "mobileRightColumn": 41,
+  "mobileTopRow": 35,
   "needsErrorInfo": false,
-  "originalBottomRow": 57,
-  "originalTopRow": 53,
   "overflow": "NONE",
-  "parentColumnSpace": 12.3125,
+  "parentColumnSpace": 20.25,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 24,
+  "rightColumn": 41,
   "shouldTruncate": false,
-  "text": "{{\n  moment(\n    GetMedics_MaterDei.data.find(\n      user => user.RSMEDICID == Select1.selectedOptionValue\n    )?.RSVALIDTO\n  ).format(\"DD/MM/YYYY\")\n}}",
-  "textAlign": "LEFT",
+  "text": "Id.Medico",
+  "textAlign": "RIGHT",
   "textColor": "#231F20",
-  "topRow": 53,
+  "topRow": 35,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "qhn81m7c4a",
-  "widgetName": "Text1Copy"
+  "widgetId": "fpivd10e1o",
+  "widgetName": "Text6"
 }

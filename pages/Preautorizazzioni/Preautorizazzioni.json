@@ -1,23 +1,23 @@
 {
-  "gitSyncId": "6601851cbf3e805bd6a4b13a_b4cb1c5a-eed2-46b7-8171-ae5d4a51d692",
+  "gitSyncId": "6601851cbf3e805bd6a4b13a_eeb63ccc-ca5e-4858-9ab8-622056a85e22",
   "unpublishedPage": {
     "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 590,
+          "bottomRow": 380,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
           "dynamicBindingPathList": [],
           "leftColumn": 0,
-          "minHeight": 550,
+          "minHeight": 760,
           "parentColumnSpace": 1,
           "parentRowSpace": 1,
           "rightColumn": 1224,
           "snapColumns": 64,
-          "snapRows": 53,
+          "snapRows": 74,
           "topRow": 0,
           "type": "CANVAS_WIDGET",
           "version": 94,
@@ -26,7 +26,7 @@
         }
       }
     ],
-    "name": "Accreditamento_SI",
-    "slug": "accreditamento-si"
+    "name": "Preautorizazzioni",
+    "slug": "preautorizazzioni"
   }
 }

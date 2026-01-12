@@ -48,7 +48,7 @@
   "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 32,
+  "rightColumn": 35,
   "serverSideFiltering": false,
   "sourceData": "[\n  { \"label\": \"Gennaio\", \"value\": \"1\" },\n  { \"label\": \"Febbraio\", \"value\": \"2\" },\n  { \"label\": \"Marzo\", \"value\": \"3\" },\n  { \"label\": \"Aprile\", \"value\": \"4\" },\n  { \"label\": \"Maggio\", \"value\": \"5\" },\n  { \"label\": \"Giugno\", \"value\": \"6\" },\n  { \"label\": \"Luglio\", \"value\": \"7\" },\n  { \"label\": \"Agosto\", \"value\": \"8\" },\n  { \"label\": \"Settembre\", \"value\": \"9\" },\n  { \"label\": \"Ottobre\", \"value\": \"10\" },\n  { \"label\": \"Novembre\", \"value\": \"11\" },\n  { \"label\": \"Dicembre\", \"value\": \"12\" }\n]",
   "topRow": 7,

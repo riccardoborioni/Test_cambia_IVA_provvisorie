@@ -1,3 +1,0 @@
-UPDATE ba_medic
-SET RSVALIDTO = DATEADD(day, 1, GETDATE())
-WHERE RSMEDICID = '{{Select1.selectedOptionValue}}';

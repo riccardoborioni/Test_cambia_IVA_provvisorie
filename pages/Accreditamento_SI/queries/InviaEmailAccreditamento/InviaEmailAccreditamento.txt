@@ -1,0 +1,16 @@
+DECLARE @MailSubject NVARCHAR(255);
+DECLARE @MailBody NVARCHAR(MAX);
+DECLARE @Nome NVARCHAR(255) = '{{this.params.nomeMedico}}';
+
+SET @MailSubject = 'Paideia Rinnovo Accreditamento Medico: ' + @Nome;
+
+SET @MailBody = 'Il processo di accreditamento per il medico ' + '{{this.params.nomeMedico}}' + ' è stato completato.' + CHAR(13) + 
+                'Vecchia Scadenza Accreditamento: ' + '{{this.params.scadenzaVecchia}}' + CHAR(13) + 
+                'Nuova Scadenza (Rinnovo): ' + '{{this.params.nuovaScadenza}}';
+
+EXEC msdb.dbo.sp_send_dbmail
+    @profile_name = 'notifiche@cdcpaideia.com',
+    @recipients = 'riccardo.borioni@paideiahospital.it',
+    --@copy_recipients = '',in copia
+    @subject = @MailSubject,
+    @body = @MailBody;
