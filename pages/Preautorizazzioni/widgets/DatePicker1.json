@@ -5,7 +5,7 @@
   "bottomRow": 11,
   "boxShadow": "none",
   "closeOnSelection": true,
-  "dateFormat": "YYYY-MM-DD HH:mm",
+  "dateFormat": "YYYY-MM-DD",
   "datePickerType": "DATE_PICKER",
   "defaultDate": "2026-01-12T13:09:49.130Z",
   "dynamicBindingPathList": [
@@ -17,6 +17,7 @@
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
   "firstDayOfWeek": 0,
   "isDisabled": false,
   "isLoading": false,
@@ -47,7 +48,7 @@
   "rightColumn": 50,
   "shortcuts": false,
   "timePrecision": "minute",
-  "topRow": 4,
+  "topRow": 3,
   "type": "DATE_PICKER_WIDGET2",
   "version": 2,
   "widgetId": "be9e16rdiv",
