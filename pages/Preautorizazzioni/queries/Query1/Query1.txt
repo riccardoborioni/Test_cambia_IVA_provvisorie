@@ -1,5 +1,11 @@
-SELECT *
-FROM ba_cash_movement
-WHERE CMCASHACCOUNT = '000000000000004'
-  AND CMYEAR = {{ Input3.text }} 
-  AND CAST(CMREGDATE AS DATE) = '{{ DatePicker1.formattedDate }}'
+SELECT 
+    ba_cash_movement.*, 
+    ba_customer.CUCSTOMERDESCRIPTION AS NomePaziente
+FROM ba_cash_movement WITH (NOLOCK)
+LEFT JOIN ba_customer WITH (NOLOCK)
+    ON ba_cash_movement.CMCUSTOMER = ba_customer.CUCUSTOMERID
+    AND ba_cash_movement.CMCOMPANY = ba_customer.CUMYCOMPANYID 
+WHERE ba_cash_movement.CMCASHACCOUNT = '000000000000004'
+  -- Filtri Date
+  AND CONVERT(VARCHAR(8), ba_cash_movement.CMREGDATE, 112) >= REPLACE('{{ DatePicker1.formattedDate }}', '-', '')
+  AND CONVERT(VARCHAR(8), ba_cash_movement.CMREGDATE, 112) <= REPLACE('{{ DatePicker2.formattedDate }}', '-', '')

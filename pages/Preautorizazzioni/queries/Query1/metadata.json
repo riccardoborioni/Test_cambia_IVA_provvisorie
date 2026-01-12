@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT *\nFROM ba_cash_movement\nWHERE CMCASHACCOUNT = '000000000000004'\n  AND CMYEAR = {{ Input3.text }} \n  AND CAST(CMREGDATE AS DATE) = '{{ DatePicker1.formattedDate }}'",
+      "body": "SELECT \n    ba_cash_movement.*, \n    ba_customer.CUCSTOMERDESCRIPTION AS NomePaziente\nFROM ba_cash_movement WITH (NOLOCK)\nLEFT JOIN ba_customer WITH (NOLOCK)\n    ON ba_cash_movement.CMCUSTOMER = ba_customer.CUCUSTOMERID\n    AND ba_cash_movement.CMCOMPANY = ba_customer.CUMYCOMPANYID \nWHERE ba_cash_movement.CMCASHACCOUNT = '000000000000004'\n  -- Filtri Date\n  AND CONVERT(VARCHAR(8), ba_cash_movement.CMREGDATE, 112) >= REPLACE('{{ DatePicker1.formattedDate }}', '-', '')\n  AND CONVERT(VARCHAR(8), ba_cash_movement.CMREGDATE, 112) <= REPLACE('{{ DatePicker2.formattedDate }}', '-', '')",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

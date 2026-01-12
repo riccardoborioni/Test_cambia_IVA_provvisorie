@@ -1,0 +1,57 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 8,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "iconAlign": "left",
+  "iconName": "tint",
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "wvshiemg6e",
+  "leftColumn": 57,
+  "minWidth": 120,
+  "mobileBottomRow": 10,
+  "mobileLeftColumn": 47,
+  "mobileRightColumn": 63,
+  "mobileTopRow": 6,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (function() {\n    // 1. Calcoliamo la differenza in giorni usando moment (libreria interna di Appsmith)\n    const dataInizio = moment(DatePicker1.formattedDate);\n    const dataFine = moment(DatePicker2.formattedDate);\n    const giorniDiff = dataFine.diff(dataInizio, 'days');\n\n    // 2. Controllo: Se la data Fine è PRIMA della data Inizio (es. ho sbagliato a selezionare)\n    if (giorniDiff < 0) {\n      showAlert('Errore: La \"Data A\" non può essere prima della \"Data DA\"', 'error');\n    }\n    // 3. Controllo: Se i giorni sono più di 30\n    else if (giorniDiff > 30) {\n      showAlert('Attenzione: Hai selezionato ' + giorniDiff + ' giorni. Il massimo è 30.', 'error');\n    }\n    // 4. Se tutto è ok, ESEGUI LA QUERY\n    else {\n      Query1.run(); // Sostituisci Query1 col nome della tua query se diverso\n      showAlert('Ricerca avviata...', 'success');\n    }\n  })()\n}}",
+  "parentColumnSpace": 20.25,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 64,
+  "text": "Aggiorna",
+  "topRow": 4,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "p319lj8hwe",
+  "widgetName": "Button1"
+}
