@@ -1,6 +1,0 @@
-SELECT 
-    RIGHT('0000000000' + CAST((autonum + 1) AS VARCHAR(20)), 10) as next_id 
-FROM 
-    cpwarn 
-WHERE 
-    tablecode LIKE '%ba_invoice_pack%';

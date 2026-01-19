@@ -1,1 +1,7 @@
-SELECT * FROM ba_invoice_pack;
+SELECT 
+    IPID, 
+    IPDESCRI 
+FROM 
+    ba_invoice_pack 
+ORDER BY 
+    IPDESCRI ASC; -- Ordina alfabeticamente per trovarli meglio

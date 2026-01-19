@@ -11,9 +11,6 @@
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -24,7 +21,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "xq73rcinku",
-  "leftColumn": 5,
+  "leftColumn": 3,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -41,12 +38,12 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 12,
+  "rightColumn": 10,
   "shouldScrollContents": true,
   "shouldTruncate": false,
-  "text": "{{ get_new_pack_id.data && get_new_pack_id.data.length > 0 ? get_new_pack_id.data[0].next_id : \"Nessun ID trovato\" }}",
-  "textAlign": "LEFT",
-  "textColor": "#231F20",
+  "text": "AUTO",
+  "textAlign": "CENTER",
+  "textColor": "#3b82f6",
   "topRow": 9,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",

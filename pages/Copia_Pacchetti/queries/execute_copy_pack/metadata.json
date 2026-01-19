@@ -1,16 +1,16 @@
 {
-  "gitSyncId": "6601851cbf3e805bd6a4b13a_1d51e023-5e09-4429-8b55-79d5c84cd289",
-  "id": "Copia_Pacchetti_update_cpwarn",
+  "gitSyncId": "6601851cbf3e805bd6a4b13a_95f87660-45c0-4a0c-b605-f33755cf1ab1",
+  "id": "Copia_Pacchetti_execute_copy_pack",
   "pluginId": "mssql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE cpwarn \nSET autonum = autonum + 1\nWHERE tablecode LIKE '%ba_invoice_pack%';",
+      "body": "EXEC sp_CopiaPacchetto\n  @SourcePackID = '{{ Select_Pack.selectedOptionValue }}',\n  @NewDescription = '{{ Input_NewDescription.text }}',\n  @SelectedRowsList = '{{ Table2.selectedRows.map(row => row.CPROWNUM).join(',') }}';",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ],
       "timeoutInMillisecond": 10000
@@ -22,8 +22,12 @@
       "name": "TEST_PAIDEIA",
       "pluginId": "mssql-plugin"
     },
-    "dynamicBindingPathList": [],
-    "name": "update_cpwarn",
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
+    "name": "execute_copy_pack",
     "pageId": "Copia_Pacchetti",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

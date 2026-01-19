@@ -13,6 +13,11 @@
       "key": "borderRadius"
     }
   ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "dynamicTriggerPathList": [
     {
       "key": "onClick"
@@ -31,7 +36,7 @@
   "mobileRightColumn": 64,
   "mobileTopRow": 0,
   "needsErrorInfo": false,
-  "onClick": "{{closeModal(Modal1.name);}}",
+  "onClick": "{{\n  storeValue('is_running', false); // Sblocco il lucchetto\n  storeValue('proc_status', '');   // Pulisco il messaggio (Text5 diventa vuoto)\n  closeModal('Modal1');            // Chiudo la finestra\n}}",
   "parentId": "bkbauzfx28",
   "renderMode": "CANVAS",
   "responsiveBehavior": "hug",

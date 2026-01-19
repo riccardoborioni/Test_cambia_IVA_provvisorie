@@ -1,0 +1,4 @@
+EXEC sp_CopiaPacchetto
+  @SourcePackID = '{{ Select_Pack.selectedOptionValue }}',
+  @NewDescription = '{{ Input_NewDescription.text }}',
+  @SelectedRowsList = '{{ Table2.selectedRows.map(row => row.CPROWNUM).join(',') }}';

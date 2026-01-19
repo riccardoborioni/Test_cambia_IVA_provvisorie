@@ -15,6 +15,11 @@
       "key": "borderRadius"
     }
   ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
   "dynamicTriggerPathList": [
     {
       "key": "onClick"
@@ -32,7 +37,9 @@
   "mobileRightColumn": 47,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{closeModal(Modal1.name);}}",
+  "onClick": "{{\n  storeValue('is_running', false); // Sblocco il lucchetto\n  storeValue('proc_status', '');   // Pulisco il messaggio (Text5 diventa vuoto)\n  closeModal('Modal1');            // Chiudo la finestra\n}}",
+  "originalBottomRow": 44,
+  "originalTopRow": 40,
   "parentId": "bkbauzfx28",
   "placement": "CENTER",
   "recaptchaType": "V3",

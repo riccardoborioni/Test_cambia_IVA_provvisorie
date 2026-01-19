@@ -1,3 +1,0 @@
-UPDATE cpwarn 
-SET autonum = autonum + 1
-WHERE tablecode LIKE '%ba_invoice_pack%';
