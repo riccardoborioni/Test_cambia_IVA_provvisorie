@@ -1,0 +1,22 @@
+INSERT INTO ba_invoice_pack_role (
+    RPID, 
+    RPMYCOMPANYID, 
+    CPROWNUM, 
+    RPCODART, 
+    RPQTAMAX, 
+    RPPRICEMAX, 
+    cpccchk
+)
+SELECT 
+    '{{ Input_NewID.text }}',          -- NOTA: Ho messo gli apici ' ' perché Prepared Statements è OFF
+    '000000000000001',                 -- Azienda fissa
+    CPROWNUM,                          -- Mantiene il numero riga originale (è un numero, niente apici)
+    RPCODART,                          -- Codice articolo
+    RPQTAMAX,                          -- Quantità
+    RPPRICEMAX,                        -- Prezzo
+    SUBSTRING(REPLACE(NEWID(), '-', ''), 1, 10) -- Genera codice casuale
+FROM 
+    ba_invoice_pack_role
+WHERE 
+    RPID = '{{ Select_Pack.selectedOptionValue }}' -- NOTA: Apici anche qui per il vecchio ID
+    AND CPROWNUM IN ( {{ Table2.selectedRows.map(row => row.CPROWNUM).join(',') }} );

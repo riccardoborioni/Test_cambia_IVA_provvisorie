@@ -1,0 +1,14 @@
+SELECT 
+    r.RPID, 
+    r.CPROWNUM, 
+    r.RPCODART, 
+    a.ARDESART,
+    a.ARDTOBSO
+FROM 
+    ba_invoice_pack p
+JOIN 
+    ba_invoice_pack_role r ON p.IPID = r.RPID
+LEFT JOIN
+    ba_articles a ON r.RPCODART = a.ARCODART
+WHERE 
+    p.IPID = {{ Select_Pack.selectedOptionValue }};

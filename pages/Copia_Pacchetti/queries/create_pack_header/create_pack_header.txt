@@ -1,0 +1,31 @@
+INSERT INTO ba_invoice_pack (
+    IPID, 
+    IPMYCOMPANYID, 
+    IPDESCRI, 
+    IPTYPE, 
+    IPVALIDFROM, 
+    IPVALIDTO, 
+    IPTOTALPRICEMAX, 
+    IPTOTALQTAMAX, 
+    IPSINGLEPRICEMAX, 
+    IPEXTRAPACK, 
+    IPPERMED, 
+    IPPERDIA, 
+    IPALIAS, 
+    IPSTRUCTUREFLG,
+    cpccchk
+) 
+VALUES (
+    '{{ Input_NewID.text }}',            
+    '000000000000001',                   
+    '{{ Input_NewDescription.text }}',   -- Descrizione completa (fino a 100 char)
+    'P',                                 
+    GETDATE(),                           
+    '2099-12-31T00:00:00',               
+    0, 0, 0,                             
+    'N',                                 
+    0, 0,                                
+    LEFT('{{ Input_NewDescription.text }}', 20), -- << MODIFICA QUI: Taglia a 20 caratteri
+    'N',                                 
+    'RickyAPP'                           
+);

@@ -31,40 +31,12 @@
   "evaluationVersion": 2,
   "pages": [
     {
-      "id": "Test_cambia_IVA_provvisorie",
-      "isDefault": false
-    },
-    {
-      "id": "Accreditamento utente",
-      "isDefault": false
-    },
-    {
-      "id": "Processi_Sql",
-      "isDefault": false
-    },
-    {
-      "id": "Accreditamento_SI",
-      "isDefault": false
-    },
-    {
-      "id": "Incassi_Giorno",
-      "isDefault": false
-    },
-    {
-      "id": "Prestazioni_per_medico",
-      "isDefault": false
-    },
-    {
-      "id": "Preautorizazzioni",
-      "isDefault": false
-    },
-    {
-      "id": "Pacchetti",
-      "isDefault": false
-    },
-    {
       "id": "HOME_Paideia_Test",
       "isDefault": true
+    },
+    {
+      "id": "Copia_Pacchetti",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
