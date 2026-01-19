@@ -31,20 +31,8 @@
   "evaluationVersion": 2,
   "pages": [
     {
-      "id": "Diretta_indiretta",
-      "isDefault": false
-    },
-    {
-      "id": "RIC-Diretta_Indiretta",
-      "isDefault": false
-    },
-    {
-      "id": "Cambio_codici_iva",
-      "isDefault": false
-    },
-    {
       "id": "Test_cambia_IVA_provvisorie",
-      "isDefault": true
+      "isDefault": false
     },
     {
       "id": "Accreditamento utente",
@@ -69,6 +57,14 @@
     {
       "id": "Preautorizazzioni",
       "isDefault": false
+    },
+    {
+      "id": "Pacchetti",
+      "isDefault": false
+    },
+    {
+      "id": "HOME_Paideia_Test",
+      "isDefault": true
     }
   ],
   "unpublishedAppLayout": {
