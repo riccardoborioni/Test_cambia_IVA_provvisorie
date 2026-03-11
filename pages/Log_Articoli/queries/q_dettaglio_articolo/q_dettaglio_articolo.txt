@@ -1,0 +1,7 @@
+SELECT
+  ARCODART,
+  ARDESART,
+  UTDC,
+  ARDTOBSO
+FROM ba_articles
+WHERE ARCODART = {{ Select1.selectedOptionValue }};

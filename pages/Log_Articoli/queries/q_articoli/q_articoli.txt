@@ -1,0 +1,5 @@
+SELECT
+  ARCODART AS articolo,
+  ARDESART AS descrizione
+FROM ba_articles
+ORDER BY ARDESART;

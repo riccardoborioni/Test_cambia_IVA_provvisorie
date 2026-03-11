@@ -37,6 +37,10 @@
     {
       "id": "Copia_Pacchetti",
       "isDefault": false
+    },
+    {
+      "id": "Log_Articoli",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

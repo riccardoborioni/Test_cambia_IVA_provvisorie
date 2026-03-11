@@ -1,0 +1,14 @@
+SELECT
+  h.EVMHYEAR,
+  h.EVARTICLEDESCRI,
+  hos.HORESERVATIONCOUNTER,
+  hos.HOWARDID,
+  hos.HOLASTNAME,
+  hos.HOFIRSTNAME
+FROM ba_hosp_administration h
+INNER JOIN ba_articles a
+  ON a.ARCODART = h.EVARTICLEID
+INNER JOIN ba_hospitalization hos
+  ON hos.HOHOSPID = h.EVHOSPID
+WHERE a.ARCODART = {{ Select1.selectedOptionValue }}
+ORDER BY h.EVMHYEAR DESC;
