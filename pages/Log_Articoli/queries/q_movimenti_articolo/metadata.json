@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  h.EVMHYEAR,\n  h.EVARTICLEDESCRI,\n  hos.HORESERVATIONCOUNTER,\n  hos.HOWARDID,\n  hos.HOLASTNAME,\n  hos.HOFIRSTNAME\nFROM ba_hosp_administration h\nINNER JOIN ba_articles a\n  ON a.ARCODART = h.EVARTICLEID\nINNER JOIN ba_hospitalization hos\n  ON hos.HOHOSPID = h.EVHOSPID\nWHERE a.ARCODART = {{ Select1.selectedOptionValue }}\nORDER BY h.EVMHYEAR DESC;\n",
+      "body": "SELECT\n  h.EVMHYEAR,\n  h.EVARTICLEDESCRI,\n  h.EVWARDEFFECTIVEID,\n  h.EVEVENTDATEBEGIN,\n  h.EVCREATEDBY,\n  h.EVINSTANCEID,\n  u.[name] AS EVCREATEDBY_NAME,\n  hos.HORESERVATIONCOUNTER,\n  hos.HOLASTNAME,\n  hos.HOFIRSTNAME\nFROM ba_hosp_administration h\nINNER JOIN ba_articles a\n  ON a.ARCODART = h.EVARTICLEID\nINNER JOIN ba_hospitalization hos\n  ON hos.HOHOSPID = h.EVHOSPID\nLEFT JOIN cpusers u\n  ON u.[code] = h.EVCREATEDBY\nWHERE a.ARCODART = {{ Select1.selectedOptionValue }}\nORDER BY h.EVMHYEAR DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

@@ -59,7 +59,7 @@
   "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 14,
+  "rightColumn": 20,
   "serverSideFiltering": false,
   "sourceData": "{{ q_articoli.data }}",
   "topRow": 5,

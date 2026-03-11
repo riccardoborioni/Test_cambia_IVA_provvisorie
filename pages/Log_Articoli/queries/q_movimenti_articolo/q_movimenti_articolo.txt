@@ -1,8 +1,12 @@
 SELECT
   h.EVMHYEAR,
   h.EVARTICLEDESCRI,
+  h.EVWARDEFFECTIVEID,
+  h.EVEVENTDATEBEGIN,
+  h.EVCREATEDBY,
+  h.EVINSTANCEID,
+  u.[name] AS EVCREATEDBY_NAME,
   hos.HORESERVATIONCOUNTER,
-  hos.HOWARDID,
   hos.HOLASTNAME,
   hos.HOFIRSTNAME
 FROM ba_hosp_administration h
@@ -10,5 +14,7 @@ INNER JOIN ba_articles a
   ON a.ARCODART = h.EVARTICLEID
 INNER JOIN ba_hospitalization hos
   ON hos.HOHOSPID = h.EVHOSPID
+LEFT JOIN cpusers u
+  ON u.[code] = h.EVCREATEDBY
 WHERE a.ARCODART = {{ Select1.selectedOptionValue }}
 ORDER BY h.EVMHYEAR DESC;
