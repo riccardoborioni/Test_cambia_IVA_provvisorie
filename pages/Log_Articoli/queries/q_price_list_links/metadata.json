@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  pll.PLLARTICLEID,\n  pll.PLLVALIDFROM,\n  pll.PLLVALIDTO,\n  CASE\n    WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC\n    ELSE pll.UTCV\n  END AS UTENTE_CODICE,\n  u.[name] AS UTENTE_NAME\nFROM ba_price_list_links pll\nLEFT JOIN cpusers u\n  ON u.[code] = CASE\n                  WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC\n                  ELSE pll.UTCV\n                END\nWHERE pll.PLLARTICLEID = {{ Select1.selectedOptionValue }}\nORDER BY pll.PLLVALIDFROM DESC;\n",
+      "body": "SELECT\n  pll.PLLARTICLEID,\n  pll.PLLVALIDFROM,\n  pll.PLLVALIDTO,\n  CASE\n    WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC\n    ELSE pll.UTCV\n  END AS UTENTE_CODICE,\n  u.[name] AS UTENTE_NAME,\n  pl.PLDESCRIPTION\nFROM ba_price_list_links pll\nLEFT JOIN cpusers u\n  ON u.[code] = CASE\n                  WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC\n                  ELSE pll.UTCV\n                END\nLEFT JOIN ba_price_list pl\n  ON pl.PLPRICELISTID = pll.PLLPRICELISTID\nWHERE pll.PLLARTICLEID = {{ Select1.selectedOptionValue }}\nORDER BY pll.PLLVALIDFROM DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

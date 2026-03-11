@@ -319,7 +319,7 @@
   },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 64,
   "searchKey": "",
   "tableData": "{{ q_movimenti_articolo.data }}",
   "textSize": "0.875rem",

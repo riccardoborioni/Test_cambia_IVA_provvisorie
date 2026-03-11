@@ -6,12 +6,15 @@ SELECT
     WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC
     ELSE pll.UTCV
   END AS UTENTE_CODICE,
-  u.[name] AS UTENTE_NAME
+  u.[name] AS UTENTE_NAME,
+  pl.PLDESCRIPTION
 FROM ba_price_list_links pll
 LEFT JOIN cpusers u
   ON u.[code] = CASE
                   WHEN pll.UTCV IS NULL OR pll.UTCV = 0 THEN pll.UTCC
                   ELSE pll.UTCV
                 END
+LEFT JOIN ba_price_list pl
+  ON pl.PLPRICELISTID = pll.PLLPRICELISTID
 WHERE pll.PLLARTICLEID = {{ Select1.selectedOptionValue }}
 ORDER BY pll.PLLVALIDFROM DESC;

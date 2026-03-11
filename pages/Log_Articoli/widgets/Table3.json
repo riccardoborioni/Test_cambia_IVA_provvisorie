@@ -33,13 +33,15 @@
   },
   "columnOrder": [
     "PLLARTICLEID",
+    "PLDESCRIPTION",
     "PLLVALIDFROM",
     "PLLVALIDTO",
     "UTENTE_CODICE",
     "UTENTE_NAME"
   ],
-  "columnUpdatedAt": 1773231839317,
+  "columnUpdatedAt": 1773233059587,
   "columnWidthMap": {
+    "PLLVALIDTO": 118,
     "UTENTE_CODICE": 60
   },
   "customIsLoading": false,
@@ -83,6 +85,9 @@
     },
     {
       "key": "primaryColumns.PLLVALIDTO.textColor"
+    },
+    {
+      "key": "primaryColumns.PLDESCRIPTION.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -122,6 +127,37 @@
   "parentId": "0",
   "parentRowSpace": 10,
   "primaryColumns": {
+    "PLDESCRIPTION": {
+      "alias": "PLDESCRIPTION",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "columnType": "text",
+      "computedValue": "{{(() => { const tableData = Table3.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"PLDESCRIPTION\"])) : PLDESCRIPTION })()}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "PLDESCRIPTION",
+      "index": 5,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "PLDESCRIPTION",
+      "notation": "standard",
+      "originalId": "PLDESCRIPTION",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
     "PLLARTICLEID": {
       "alias": "PLLARTICLEID",
       "allowCellWrapping": false,
@@ -239,7 +275,7 @@
       "isDiscardVisible": true,
       "isEditable": false,
       "isSaveVisible": true,
-      "isVisible": true,
+      "isVisible": false,
       "label": "UTENTE_CODICE",
       "notation": "standard",
       "originalId": "UTENTE_CODICE",
@@ -284,7 +320,7 @@
   },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 63,
+  "rightColumn": 64,
   "searchKey": "",
   "tableData": "{{ q_price_list_links.data }}\n",
   "textSize": "0.875rem",
