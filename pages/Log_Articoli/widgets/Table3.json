@@ -37,9 +37,10 @@
     "PLLVALIDFROM",
     "PLLVALIDTO",
     "UTENTE_CODICE",
-    "UTENTE_NAME"
+    "UTENTE_NAME",
+    "PLLAMOUNT"
   ],
-  "columnUpdatedAt": 1773233059587,
+  "columnUpdatedAt": 1773244508558,
   "columnWidthMap": {
     "PLLVALIDTO": 118,
     "UTENTE_CODICE": 60
@@ -88,6 +89,9 @@
     },
     {
       "key": "primaryColumns.PLDESCRIPTION.computedValue"
+    },
+    {
+      "key": "primaryColumns.PLLAMOUNT.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -151,6 +155,37 @@
       "label": "PLDESCRIPTION",
       "notation": "standard",
       "originalId": "PLDESCRIPTION",
+      "sticky": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
+    "PLLAMOUNT": {
+      "alias": "PLLAMOUNT",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "columnType": "number",
+      "computedValue": "{{(() => { const tableData = Table3.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"PLLAMOUNT\"])) : PLLAMOUNT })()}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "horizontalAlignment": "LEFT",
+      "id": "PLLAMOUNT",
+      "index": 6,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "PLLAMOUNT",
+      "notation": "standard",
+      "originalId": "PLLAMOUNT",
       "sticky": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
@@ -225,7 +260,7 @@
       "alias": "PLLVALIDTO",
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
-      "cellBackground": "{{(() => { const tableData = Table3.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  !currentRow.PLLVALIDTO\n    ? \"transparent\"\n    : moment(currentRow.PLLVALIDTO).isBefore(moment(), \"day\")\n      ? \"#FFC0CB\"\n      : \"#22c55e\"\n)) : \n  !currentRow.PLLVALIDTO\n    ? \"transparent\"\n    : moment(currentRow.PLLVALIDTO).isBefore(moment(), \"day\")\n      ? \"#FFC0CB\"\n      : \"#22c55e\"\n })()}}",
+      "cellBackground": "{{(() => { const tableData = Table3.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  !currentRow.PLLVALIDTO\n    ? \"transparent\"\n    : moment(currentRow.PLLVALIDTO).isBefore(moment(), \"day\")\n      ? \"#FF69B4\"\n      : \"#22c55e\"\n)) : \n  !currentRow.PLLVALIDTO\n    ? \"transparent\"\n    : moment(currentRow.PLLVALIDTO).isBefore(moment(), \"day\")\n      ? \"#FF69B4\"\n      : \"#22c55e\"\n })()}}",
       "columnType": "date",
       "computedValue": "{{(() => { const tableData = Table3.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"PLLVALIDTO\"])) : PLLVALIDTO })()}}",
       "currencyCode": "USD",
