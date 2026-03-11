@@ -9,12 +9,13 @@ SELECT
   hos.HORESERVATIONCOUNTER,
   hos.HOLASTNAME,
   hos.HOFIRSTNAME
-FROM ba_hosp_administration h
-INNER JOIN ba_articles a
+FROM ba_hosp_administration h WITH (NOLOCK)
+INNER JOIN ba_articles a WITH (NOLOCK)
   ON a.ARCODART = h.EVARTICLEID
-INNER JOIN ba_hospitalization hos
+INNER JOIN ba_hospitalization hos WITH (NOLOCK)
   ON hos.HOHOSPID = h.EVHOSPID
-LEFT JOIN cpusers u
+LEFT JOIN cpusers u WITH (NOLOCK)
   ON u.[code] = h.EVCREATEDBY
 WHERE a.ARCODART = {{ Select1.selectedOptionValue }}
+  AND h.EVMHYEAR = {{ Number(InpAnno.text) || 2026 }}
 ORDER BY h.EVMHYEAR DESC;

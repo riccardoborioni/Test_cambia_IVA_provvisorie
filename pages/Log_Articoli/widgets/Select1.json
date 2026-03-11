@@ -1,16 +1,13 @@
 {
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
-  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 12,
-  "boxShadow": "none",
+  "borderRadius": "1.5rem",
+  "bottomRow": 21,
+  "boxShadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   "defaultOptionValue": "GREEN",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
     },
     {
       "key": "sourceData"
@@ -38,8 +35,9 @@
   "key": "r4a3gt3oqe",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Label",
-  "labelTextSize": "0.875rem",
+  "labelText": "ARTICOLO",
+  "labelTextColor": "#3b82f6",
+  "labelTextSize": "1.25rem",
   "labelWidth": 5,
   "leftColumn": 0,
   "maxDynamicHeight": 9000,
@@ -59,10 +57,10 @@
   "placeholderText": "Select option",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 20,
+  "rightColumn": 28,
   "serverSideFiltering": false,
   "sourceData": "{{ q_articoli.data }}",
-  "topRow": 5,
+  "topRow": 14,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "2ctwc9qdsv",

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  h.EVMHYEAR,\n  h.EVARTICLEDESCRI,\n  h.EVWARDEFFECTIVEID,\n  h.EVEVENTDATEBEGIN,\n  h.EVCREATEDBY,\n  h.EVINSTANCEID,\n  u.[name] AS EVCREATEDBY_NAME,\n  hos.HORESERVATIONCOUNTER,\n  hos.HOLASTNAME,\n  hos.HOFIRSTNAME\nFROM ba_hosp_administration h\nINNER JOIN ba_articles a\n  ON a.ARCODART = h.EVARTICLEID\nINNER JOIN ba_hospitalization hos\n  ON hos.HOHOSPID = h.EVHOSPID\nLEFT JOIN cpusers u\n  ON u.[code] = h.EVCREATEDBY\nWHERE a.ARCODART = {{ Select1.selectedOptionValue }}\nORDER BY h.EVMHYEAR DESC;\n",
+      "body": "SELECT\n  h.EVMHYEAR,\n  h.EVARTICLEDESCRI,\n  h.EVWARDEFFECTIVEID,\n  h.EVEVENTDATEBEGIN,\n  h.EVCREATEDBY,\n  h.EVINSTANCEID,\n  u.[name] AS EVCREATEDBY_NAME,\n  hos.HORESERVATIONCOUNTER,\n  hos.HOLASTNAME,\n  hos.HOFIRSTNAME\nFROM ba_hosp_administration h WITH (NOLOCK)\nINNER JOIN ba_articles a WITH (NOLOCK)\n  ON a.ARCODART = h.EVARTICLEID\nINNER JOIN ba_hospitalization hos WITH (NOLOCK)\n  ON hos.HOHOSPID = h.EVHOSPID\nLEFT JOIN cpusers u WITH (NOLOCK)\n  ON u.[code] = h.EVCREATEDBY\nWHERE a.ARCODART = {{ Select1.selectedOptionValue }}\n  AND h.EVMHYEAR = {{ Number(InpAnno.text) || 2026 }}\nORDER BY h.EVMHYEAR DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

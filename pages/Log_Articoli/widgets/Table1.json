@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 62,
+  "bottomRow": 81,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -32,7 +32,6 @@
     }
   },
   "columnOrder": [
-    "EVINSTANCEID",
     "EVMHYEAR",
     "EVARTICLEDESCRI",
     "HORESERVATIONCOUNTER",
@@ -41,9 +40,10 @@
     "EVWARDEFFECTIVEID",
     "EVEVENTDATEBEGIN",
     "EVCREATEDBY",
-    "EVCREATEDBY_NAME"
+    "EVCREATEDBY_NAME",
+    "EVINSTANCEID"
   ],
-  "columnUpdatedAt": 1773251379511,
+  "columnUpdatedAt": 1773253015901,
   "columnWidthMap": {
     "EVARTICLEDESCRI": 204,
     "EVEVENTDATEBEGIN": 200,
@@ -128,6 +128,8 @@
   "mobileRightColumn": 35,
   "mobileTopRow": 26,
   "needsErrorInfo": false,
+  "originalBottomRow": 75,
+  "originalTopRow": 25,
   "parentColumnSpace": 20.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -480,7 +482,7 @@
   "searchKey": "",
   "tableData": "{{ q_movimenti_articolo.data }}",
   "textSize": "0.875rem",
-  "topRow": 21,
+  "topRow": 31,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "version": 2,
