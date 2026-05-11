@@ -41,6 +41,10 @@
     {
       "id": "Log_Articoli",
       "isDefault": false
+    },
+    {
+      "id": "Passwor_user",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

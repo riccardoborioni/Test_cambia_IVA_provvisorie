@@ -1,0 +1,5 @@
+SELECT
+    code,
+    name
+FROM cpusers WITH (NOLOCK)
+ORDER BY name;
