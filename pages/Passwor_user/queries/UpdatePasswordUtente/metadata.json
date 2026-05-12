@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE cpusers\nSET passwd = '#_\\ao-hw@u)''o4!_q\\:G'\nWHERE code = {{ Select1.selectedOptionValue }};",
+      "body": "UPDATE cpusers\nSET passwd = '''*,''O[KUmZ)f3v{Tz\\&3'\nWHERE code = {{ Select1.selectedOptionValue }};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

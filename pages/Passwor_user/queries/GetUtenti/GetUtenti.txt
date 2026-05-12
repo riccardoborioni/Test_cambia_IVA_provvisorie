@@ -2,4 +2,5 @@ SELECT
     code,
     name
 FROM cpusers WITH (NOLOCK)
+WHERE enabled = '{{ CheckboxGroup1.selectedValues.includes("Disattivato") ? "D" : "E" }}'
 ORDER BY name;

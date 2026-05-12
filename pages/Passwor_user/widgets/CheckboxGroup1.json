@@ -1,0 +1,63 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 30,
+  "defaultSelectedValues": "[\n  \"BLUE\"\n]",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "flexVerticalAlignment": "start",
+  "isDisabled": false,
+  "isInline": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "ymg2ycprla",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Label",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 1,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 6,
+  "mobileRightColumn": 29,
+  "mobileTopRow": 34,
+  "needsErrorInfo": false,
+  "options": [
+    {
+      "label": "Distattivato",
+      "value": "Distattivato"
+    },
+    {
+      "label": "Green",
+      "value": "GREEN"
+    },
+    {
+      "label": "Red",
+      "value": "RED"
+    }
+  ],
+  "originalBottomRow": 30,
+  "originalTopRow": 23,
+  "parentColumnSpace": 20.25,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "rightColumn": 21,
+  "topRow": 23,
+  "type": "CHECKBOX_GROUP_WIDGET",
+  "version": 2,
+  "widgetId": "rtmxxzn7ro",
+  "widgetName": "CheckboxGroup1"
+}

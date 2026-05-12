@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    code,\n    name\nFROM cpusers WITH (NOLOCK)\nORDER BY name;",
+      "body": "SELECT\n    code,\n    name\nFROM cpusers WITH (NOLOCK)\nWHERE enabled = '{{ CheckboxGroup1.selectedValues.includes(\"Disattivato\") ? \"D\" : \"E\" }}'\nORDER BY name;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,7 +22,11 @@
       "name": "TEST_PAIDEIA",
       "pluginId": "mssql-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "name": "GetUtenti",
     "pageId": "Passwor_user",
     "runBehaviour": "AUTOMATIC",
