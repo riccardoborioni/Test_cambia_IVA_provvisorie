@@ -1,6 +1,6 @@
---INSERT INTO ozekimessageout (receiver, msg, status)
---VALUES (
-    --{{ txtTelefono.text.replace(/[^\d+]/g, '') }}, 
-    --{{ txtMessaggio.text }}, 
-    --'send'
+INSERT INTO ozekimessageout (receiver, msg, status)
+VALUES (
+    {{ txtTelefono.text.replace(/[^\d+]/g, '') }}, 
+    {{ txtMessaggio.text }}, 
+    'send'
 )

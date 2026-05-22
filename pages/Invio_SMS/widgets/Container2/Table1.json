@@ -1,13 +1,14 @@
 {
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
-  "animateLoading": true,
+  "allowAddNewRow": false,
+  "animateLoading": false,
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
   "bottomRow": 36,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
-  "canFreezeColumn": true,
+  "canFreezeColumn": false,
   "childStylesheet": {
     "button": {
       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -45,9 +46,7 @@
   "customIsLoadingValue": "",
   "defaultPageSize": 0,
   "defaultSelectedRowIndex": 0,
-  "defaultSelectedRowIndices": [
-    0
-  ],
+  "defaultSelectedRowIndices": "[\n  0\n]",
   "delimiter": ",",
   "dynamicBindingPathList": [
     {
@@ -87,7 +86,7 @@
     }
   ],
   "dynamicTriggerPathList": [],
-  "enableClientSideSearch": true,
+  "enableClientSideSearch": false,
   "endOfData": false,
   "flexVerticalAlignment": "start",
   "horizontalAlignment": "LEFT",
@@ -95,9 +94,9 @@
   "isLoading": false,
   "isSortable": true,
   "isVisible": true,
-  "isVisibleDownload": true,
+  "isVisibleDownload": false,
   "isVisibleFilters": false,
-  "isVisiblePagination": true,
+  "isVisiblePagination": false,
   "isVisibleSearch": true,
   "key": "z7q5pejf9r",
   "label": "Data",
@@ -107,6 +106,7 @@
   "mobileLeftColumn": 2,
   "mobileRightColumn": 36,
   "mobileTopRow": 23,
+  "multiRowSelection": false,
   "needsErrorInfo": false,
   "parentColumnSpace": 4.5,
   "parentId": "vn1esdqpbi",
@@ -303,6 +303,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 64,
   "searchKey": "",
+  "serverSidePaginationEnabled": false,
   "tableData": "{{ DatiPazienti.data }}",
   "textSize": "0.875rem",
   "topRow": 7,
