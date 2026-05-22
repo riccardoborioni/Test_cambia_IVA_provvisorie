@@ -45,6 +45,10 @@
     {
       "id": "Passwor_user",
       "isDefault": false
+    },
+    {
+      "id": "Invio_SMS",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

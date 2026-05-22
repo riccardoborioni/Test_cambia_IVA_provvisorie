@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 22,
+  "bottomRow": 23,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -21,7 +24,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "5mnhe35iib",
-  "leftColumn": 28,
+  "leftColumn": 41.02564102564102,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -31,20 +34,20 @@
   "mobileTopRow": 18,
   "needsErrorInfo": false,
   "overflow": "NONE",
-  "parentColumnSpace": 20.25,
-  "parentId": "0",
+  "parentColumnSpace": 12.33984375,
+  "parentId": "h3g4ymeupv",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 32,
+  "rightColumn": 60.717948717948715,
   "shouldTruncate": false,
-  "text": "Paidei99",
-  "textAlign": "LEFT",
-  "textColor": "#231F20",
-  "topRow": 18,
+  "text": "Paideia99",
+  "textAlign": "CENTER",
+  "textColor": "{{appsmith.theme.colors.primaryColor}}",
+  "topRow": 19,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "ulrtw1l4xg",
+  "widgetId": "eo7q7vvs1n",
   "widgetName": "Text1"
 }

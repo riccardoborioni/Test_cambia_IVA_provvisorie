@@ -1,0 +1,20 @@
+SELECT TOP 100
+    PAPATIENTID, 
+    PASURNAME AS Cognome,
+    PANAME AS Nome,
+    PAFISCALCODE AS [Codice Fiscale],
+    PAPHONE1 AS [Telefono 1],
+    PAPHONE2 AS [Telefono 2]
+FROM 
+    ba_patient WITH (NOLOCK)
+WHERE 
+    -- Controllo date di validità
+    (PAVALIDTO IS NULL OR PAVALIDTO > GETDATE())
+    AND PASURNAME IS NOT NULL 
+    AND PANAME IS NOT NULL
+    
+    -- Filtri di ricerca dai tuoi due campi input
+    AND PASURNAME LIKE '%' + '{{ txtCognome.text }}' + '%'
+    AND PANAME LIKE '%' + '{{ txtNome.text }}' + '%'
+ORDER BY 
+    PASURNAME, PANAME;
