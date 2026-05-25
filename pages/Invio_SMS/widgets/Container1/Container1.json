@@ -3,7 +3,7 @@
   "backgroundColor": "#FFFFFF",
   "borderColor": "#E0DEDE",
   "borderWidth": "1",
-  "bottomRow": 75,
+  "bottomRow": 104,
   "boxShadow": "NONE",
   "children": [
     {
@@ -44,7 +44,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "ctdbo9u1kw",
-  "leftColumn": 0,
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 10,
   "minWidth": 450,
@@ -56,8 +56,8 @@
     "selectionBGCSSVar": "--on-canvas-ui-widget-selection",
     "selectionColorCSSVar": "--on-canvas-ui-widget-focus"
   },
-  "originalBottomRow": 75,
-  "originalTopRow": 56,
+  "originalBottomRow": 104,
+  "originalTopRow": 85,
   "parentColumnSpace": 4.21875,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -75,7 +75,7 @@
     "Layout"
   ],
   "thumbnailSVG": "/static/media/thumbnail.6cb355b93146b5347bbb048a568ed446.svg",
-  "topRow": 56,
+  "topRow": 85,
   "type": "CONTAINER_WIDGET",
   "version": 1,
   "widgetId": "6xp9kj9sza",

@@ -1,55 +1,64 @@
 {
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
-  "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 54,
+  "bottomRow": 55,
   "boxShadow": "none",
-  "defaultText": "",
+  "defaultOptionValue": "GREEN",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
     }
   ],
   "dynamicHeight": "FIXED",
-  "iconAlign": "left",
-  "inputType": "TEXT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
   "isDisabled": false,
+  "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "k7mb90jvno",
-  "label": "Label",
+  "key": "8gydpwc53p",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelStyle": "",
+  "labelText": "\n",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 30,
+  "leftColumn": 0,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
   "mobileBottomRow": 56,
-  "mobileLeftColumn": 30,
-  "mobileRightColumn": 50,
-  "mobileTopRow": 50,
+  "mobileLeftColumn": 1,
+  "mobileRightColumn": 21,
+  "mobileTopRow": 49,
   "needsErrorInfo": false,
-  "originalBottomRow": 54,
-  "originalTopRow": 49,
+  "optionLabel": "RSMEDICDESCRI",
+  "optionValue": "RSMEDICDESCRI",
+  "originalBottomRow": 55,
+  "originalTopRow": 48,
   "parentColumnSpace": 14.234375,
   "parentId": "0",
   "parentRowSpace": 10,
+  "placeholderText": "Select option",
   "renderMode": "CANVAS",
-  "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 59,
-  "showStepArrows": false,
-  "topRow": 49,
-  "type": "INPUT_WIDGET_V2",
-  "version": 2,
-  "widgetId": "1z16ukf7po",
-  "widgetName": "Input1"
+  "rightColumn": 33,
+  "serverSideFiltering": false,
+  "sourceData": "{{Dati_medico.data}}",
+  "topRow": 48,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "h8u5f75tv3",
+  "widgetName": "Select2"
 }
