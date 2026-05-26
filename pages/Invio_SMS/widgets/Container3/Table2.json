@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 93,
+  "bottomRow": 40,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -42,7 +42,8 @@
   ],
   "columnUpdatedAt": 1779783580123,
   "columnWidthMap": {
-    "RSMEDICDESCRI": 226
+    "RSMEDICDESCRI": 226,
+    "RSPHONE1": 204
   },
   "customIsLoading": false,
   "customIsLoadingValue": "",
@@ -114,10 +115,10 @@
   "mobileRightColumn": 35,
   "mobileTopRow": 56,
   "needsErrorInfo": false,
-  "originalBottomRow": 93,
-  "originalTopRow": 65,
-  "parentColumnSpace": 14.234375,
-  "parentId": "0",
+  "originalBottomRow": 40,
+  "originalTopRow": 5,
+  "parentColumnSpace": 4.5,
+  "parentId": "3qq1og54mb",
   "parentRowSpace": 10,
   "primaryColumns": {
     "RSFIRSTNAME": {
@@ -344,11 +345,11 @@
   "searchKey": "",
   "tableData": "{{Dati_medico.data}}",
   "textSize": "0.875rem",
-  "topRow": 65,
+  "topRow": 5,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "version": 2,
   "verticalAlignment": "CENTER",
-  "widgetId": "tlddpo0o4w",
+  "widgetId": "8pfpl1hck8",
   "widgetName": "Table2"
 }
