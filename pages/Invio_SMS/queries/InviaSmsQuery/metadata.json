@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO ozekimessageout (receiver, msg, status)\nVALUES (\n    {{ txtTelefono.text.replace(/[^\\d+]/g, '') }}, \n    {{ txtMessaggio.text }}, \n    'send'\n)",
+      "body": "INSERT INTO ozekimessageout (receiver, msg, status)\nVALUES (\n    '{{ String(txtTelefono.text || '').replace(/[^\\d+]/g, '') }}', \n    '{{ txtMessaggio.text }}', \n    'send'\n)",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

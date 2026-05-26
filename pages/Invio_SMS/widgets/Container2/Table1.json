@@ -5,7 +5,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 37,
+  "bottomRow": 43,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": false,
@@ -41,7 +41,9 @@
     "Telefono_2"
   ],
   "columnUpdatedAt": 1779466157557,
-  "columnWidthMap": {},
+  "columnWidthMap": {
+    "Codice_Fiscale": 236
+  },
   "customIsLoading": false,
   "customIsLoadingValue": "",
   "defaultPageSize": 0,
@@ -301,7 +303,7 @@
   },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 63,
+  "rightColumn": 64,
   "searchKey": "",
   "serverSidePaginationEnabled": false,
   "tableData": "{{ DatiPazienti.data }}",
