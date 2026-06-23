@@ -1,0 +1,14 @@
+INSERT INTO public.coda_stampe (
+    nome_file, 
+    percorso_file, 
+    contenuto_file, 
+    stampante_target, 
+    stato
+)
+SELECT 
+    (elemento->>'name')::varchar,
+    'CARICATO_DA_INTERFACCIA',
+    decode(split_part(elemento->>'data', ',', 2), 'base64'),
+    {{ sel_stampante.selectedOptionValue }},
+    'DA_STAMPARE'
+FROM json_array_elements({{ JSON.stringify(file_caricato.files) }}::json) AS elemento;

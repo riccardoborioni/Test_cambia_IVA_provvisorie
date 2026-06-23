@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT TOP 100\n    PAPATIENTID, \n    PASURNAME AS Cognome,\n    PANAME AS Nome,\n    PAFISCALCODE AS [Codice Fiscale],\n    PAPHONE1 AS [Telefono 1],\n    PAPHONE2 AS [Telefono 2]\nFROM \n    ba_patient WITH (NOLOCK)\nWHERE \n    -- Controllo date di validità\n    (PAVALIDTO IS NULL OR PAVALIDTO > GETDATE())\n    AND PASURNAME IS NOT NULL \n    AND PANAME IS NOT NULL\n    \n    -- Filtri di ricerca dai tuoi due campi input\n    AND PASURNAME LIKE '%' + '{{ txtCognome.text }}' + '%'\n    AND PANAME LIKE '%' + '{{ txtNome.text }}' + '%'\nORDER BY \n    PASURNAME, PANAME;",
+      "body": "SELECT TOP 100\n    PAPATIENTID, \n    PASURNAME AS Cognome,\n    PANAME AS Nome,\n    PAFISCALCODE AS [Codice Fiscale],\n    PAPHONE1 AS [Telefono 1],\n    PAPHONE2 AS [Telefono 2]\nFROM \n    ba_patient WITH (NOLOCK)\nWHERE \n    -- Eliminati i controlli IS NOT NULL ridondanti (gestiti già dal LIKE se i campi di input hanno testo)\n    (PAVALIDTO IS NULL OR PAVALIDTO > GETDATE())\n    \n    -- Filtri di ricerca ottimizzati per evitare scansioni inutili se l'input è vuoto\n    AND (\n        '{{ txtCognome.text }}' = '' \n        OR PASURNAME LIKE '{{ txtCognome.text }}' + '%' -- Rimosso il primo '%' se cerchi per inizio stringa\n    )\n    AND (\n        '{{ txtNome.text }}' = '' \n        OR PANAME LIKE '{{ txtNome.text }}' + '%'\n    )\nORDER BY \n    PASURNAME, PANAME;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

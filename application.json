@@ -49,6 +49,14 @@
     {
       "id": "Invio_SMS",
       "isDefault": false
+    },
+    {
+      "id": "test",
+      "isDefault": false
+    },
+    {
+      "id": "stampe_automatiche",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

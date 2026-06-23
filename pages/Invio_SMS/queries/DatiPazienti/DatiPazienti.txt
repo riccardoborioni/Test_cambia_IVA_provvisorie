@@ -8,13 +8,17 @@ SELECT TOP 100
 FROM 
     ba_patient WITH (NOLOCK)
 WHERE 
-    -- Controllo date di validità
+    -- Eliminati i controlli IS NOT NULL ridondanti (gestiti già dal LIKE se i campi di input hanno testo)
     (PAVALIDTO IS NULL OR PAVALIDTO > GETDATE())
-    AND PASURNAME IS NOT NULL 
-    AND PANAME IS NOT NULL
     
-    -- Filtri di ricerca dai tuoi due campi input
-    AND PASURNAME LIKE '%' + '{{ txtCognome.text }}' + '%'
-    AND PANAME LIKE '%' + '{{ txtNome.text }}' + '%'
+    -- Filtri di ricerca ottimizzati per evitare scansioni inutili se l'input è vuoto
+    AND (
+        '{{ txtCognome.text }}' = '' 
+        OR PASURNAME LIKE '{{ txtCognome.text }}' + '%' -- Rimosso il primo '%' se cerchi per inizio stringa
+    )
+    AND (
+        '{{ txtNome.text }}' = '' 
+        OR PANAME LIKE '{{ txtNome.text }}' + '%'
+    )
 ORDER BY 
     PASURNAME, PANAME;
