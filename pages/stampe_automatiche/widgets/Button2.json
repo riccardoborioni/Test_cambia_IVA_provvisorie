@@ -1,25 +1,14 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 35,
+  "bottomRow": 43,
   "boxShadow": "none",
-  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonColor": "#3b82f6",
   "buttonVariant": "PRIMARY",
   "disabledWhenInvalid": false,
   "dynamicBindingPathList": [
     {
-      "key": "buttonColor"
-    },
-    {
       "key": "borderRadius"
-    },
-    {
-      "key": "isDisabled"
-    }
-  ],
-  "dynamicPropertyPathList": [
-    {
-      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -28,20 +17,20 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": "{{ !sel_stampante.selectedOptionValue }}",
+  "isDisabled": false,
   "isLoading": false,
   "isVisible": true,
-  "key": "90168z5y8w",
-  "leftColumn": 41,
+  "key": "0vvm9gh9s7",
+  "leftColumn": 0,
   "minWidth": 120,
-  "mobileBottomRow": 34,
-  "mobileLeftColumn": 28,
-  "mobileRightColumn": 44,
-  "mobileTopRow": 30,
+  "mobileBottomRow": 42,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 13,
+  "mobileTopRow": 38,
   "needsErrorInfo": false,
-  "onClick": "{{InserisciInCoda.run().then(() => {\n  showAlert('Aggiunto alla coda di stampa!', 'success');\n});}}",
-  "originalBottomRow": 35,
-  "originalTopRow": 31,
+  "onClick": "{{Select_Stampe.run()}}",
+  "originalBottomRow": 43,
+  "originalTopRow": 39,
   "parentColumnSpace": 20.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -51,10 +40,10 @@
   "resetFormOnClick": false,
   "responsiveBehavior": "hug",
   "rightColumn": 64,
-  "text": "Invia alla Stampante",
-  "topRow": 31,
+  "text": "AGGIORNA PER VEDERE LO STATO",
+  "topRow": 39,
   "type": "BUTTON_WIDGET",
   "version": 1,
-  "widgetId": "xb0npga53j",
-  "widgetName": "Button1"
+  "widgetId": "p5too8wzyv",
+  "widgetName": "Button2"
 }

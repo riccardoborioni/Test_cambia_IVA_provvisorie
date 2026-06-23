@@ -1,0 +1,12 @@
+SELECT 
+    id, 
+    nome_file, 
+    stato, 
+    messaggio_errore 
+FROM 
+    public.coda_stampe 
+WHERE 
+    stato <> 'STAMPATO' 
+ORDER BY 
+    data_inserimento DESC 
+LIMIT 100;

@@ -1,1 +1,0 @@
-SELECT * FROM public."coda_stampe" LIMIT 100;

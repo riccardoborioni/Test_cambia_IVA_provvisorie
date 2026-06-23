@@ -1,16 +1,16 @@
 {
   "gitSyncId": "6601851cbf3e805bd6a4b13a_87d82bdf-fe26-44af-841e-14d44ee84c56",
-  "id": "stampe_automatiche_Stampe",
+  "id": "stampe_automatiche_Select_Stampe",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT * FROM public.\"coda_stampe\" LIMIT 100;",
+      "body": "SELECT \n    id, \n    nome_file, \n    stato, \n    messaggio_errore \nFROM \n    public.coda_stampe \nWHERE \n    stato <> 'STAMPATO' \nORDER BY \n    data_inserimento DESC \nLIMIT 100;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ],
       "timeoutInMillisecond": 10000
@@ -23,9 +23,9 @@
       "pluginId": "postgres-plugin"
     },
     "dynamicBindingPathList": [],
-    "name": "Stampe",
+    "name": "Select_Stampe",
     "pageId": "stampe_automatiche",
-    "runBehaviour": "AUTOMATIC",
-    "userSetOnLoad": false
+    "runBehaviour": "MANUAL",
+    "userSetOnLoad": true
   }
 }
