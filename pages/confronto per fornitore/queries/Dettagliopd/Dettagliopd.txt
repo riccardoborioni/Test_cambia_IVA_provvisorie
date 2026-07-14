@@ -1,0 +1,46 @@
+SELECT
+    O.MVSERIAL              AS SerialOrdine,
+    O.MVNUMDOC              AS NumeroOrdine,
+    CONVERT(DATE, O.MVDATDOC) AS DataOrdine,
+    YEAR(O.MVDATDOC)         AS Anno,
+    O.MVCODCON              AS CodiceFornitore,
+    C.ANDESCRI              AS Fornitore,
+    A.ARCATCON              AS CodiceCategoria,
+    CC.C1DESCRI             AS Categoria,
+    F.FACODICE              AS CodiceFamiglia,
+    F.FADESCRI              AS FamigliaAdHoc,
+    BAF.FADESCRI            AS FamigliaH2O,
+    D.MVCODART              AS CodiceArticolo,
+    D.MVDESART              AS Descrizione,
+    D.MVQTAMOV              AS Quantita,
+    CAST(D.MVPREZZO AS DECIMAL(18,2)) AS CostoUnitario,
+    CAST(D.MVVALRIG AS DECIMAL(18,2)) AS TotaleRiga
+FROM A0001DOC_MAST O
+LEFT JOIN A0001CONTI C
+    ON C.ANCODICE = O.MVCODCON
+INNER JOIN A0001DOC_DETT D
+    ON D.MVSERIAL = O.MVSERIAL
+LEFT JOIN A0001ART_ICOL A
+    ON A.ARCODART = D.MVCODART
+LEFT JOIN A0001CACOARTI CC
+    ON CC.C1CODICE = A.ARCATCON
+LEFT JOIN A0001FAM_ARTI F
+    ON F.FACODICE = A.ARCODFAM
+LEFT JOIN [H2O_PD]..ba_art_family BAF
+    ON BAF.FAIDFAMYLI = F.FACODICE
+WHERE
+    O.MVTIPDOC = 'ORDFO'
+    AND O.MVCODCON = '{{ fornitori.selectedOptionValue }}'
+    AND YEAR(O.MVDATDOC) >= YEAR(GETDATE()) - 2
+    AND D.MVCODART IS NOT NULL
+    AND D.MVCODART <> ''
+    AND D.MVCODART NOT LIKE '%.%'
+    AND D.MVCODART NOT LIKE ',%'
+    AND D.MVQTAMOV > 0
+ORDER BY
+    YEAR(O.MVDATDOC) DESC,
+    CC.C1DESCRI,
+    F.FADESCRI,
+    O.MVDATDOC DESC,
+    O.MVNUMDOC,
+    D.MVCODART;

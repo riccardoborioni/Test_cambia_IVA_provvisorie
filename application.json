@@ -57,6 +57,10 @@
     {
       "id": "stampe_automatiche",
       "isDefault": false
+    },
+    {
+      "id": "confronto per fornitore",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

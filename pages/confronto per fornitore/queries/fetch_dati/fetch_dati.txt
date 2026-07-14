@@ -1,0 +1,38 @@
+SELECT
+    O.MVSERIAL              AS SerialOrdine,
+    O.MVNUMDOC              AS NumeroOrdine,
+    CONVERT(DATE, O.MVDATDOC) AS DataOrdine,
+    M.MVSERIAL              AS SerialDDT,
+    M.MVNUMDOC              AS NumeroDDT,
+    CONVERT(DATE, M.MVDATDOC) AS DataDDT,
+    DATEDIFF(day, O.MVDATDOC, M.MVDATDOC) AS GiorniAttesa,
+    O.MVCODCON              AS CodiceFornitore,
+    C.ANDESCRI              AS Fornitore,
+    D.MVCODART              AS CodiceArticolo,
+    D.MVDESART              AS Descrizione,
+    D.MVQTAMOV              AS Quantita,
+    D.MVPREZZO              AS CostoUnitario,
+    D.MVVALRIG              AS TotaleRiga
+FROM A0001DOC_MAST O
+LEFT JOIN A0001CONTI C 
+    ON C.ANCODICE = O.MVCODCON
+INNER JOIN A0001DOC_DETT D 
+    ON D.MVSERIAL = O.MVSERIAL  -- righe dell'ordine
+LEFT JOIN A0001DOC_DETT DDDT
+    ON DDDT.MVSERRIF = O.MVSERIAL  -- righe DDT che riferiscono l'ordine
+    AND DDDT.MVCODART = D.MVCODART  -- stesso articolo
+LEFT JOIN A0001DOC_MAST M 
+    ON M.MVSERIAL = DDDT.MVSERIAL
+    AND M.MVTIPDOC = 'DDTAC'
+WHERE
+    CONVERT(DATE, O.MVDATREG) >= CONVERT(DATE, CAST('{{ dat_inizio.formattedDate }}' AS DATETIME))
+    AND CONVERT(DATE, O.MVDATREG) <= CONVERT(DATE, CAST('{{ dat_fine.formattedDate }}' AS DATETIME))
+    AND O.MVTIPDOC = 'ORDFO'
+    AND D.MVCODART IS NOT NULL
+    AND D.MVCODART <> ''
+    AND D.MVCODART NOT LIKE '%.%'
+    AND D.MVCODART NOT LIKE ',%'
+    AND D.MVQTAMOV > 0
+ORDER BY
+    C.ANDESCRI,
+    O.MVDATREG DESC;

@@ -1,0 +1,20 @@
+SELECT TOP 100
+    [CODICE_GRUPPO],
+    [DESCRI_GRUPPO],
+    [CODICE_FAMIGLIA],
+    [DESCRI_FAMIGLIA],
+    [CODICE_ARTICOLO],
+    [DESCRI_ARTICOLO],
+    [FORNITORE],
+    [DATA_ORDINE],
+    [COSTO_UM1],
+    [PREZZO_UM1],
+    [UM1],
+    [QTA_CONF],
+    [IVA_ACQUISTO],
+    [IVA_VENDITA],
+    [QUANTITA_ORDINATA]
+FROM 
+    dbo.Statistica_acquisti
+ORDER BY 
+    [DATA_ORDINE] DESC;
